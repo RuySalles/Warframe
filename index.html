@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taubound — Guia do Tenno</title>
+<meta name="description" content="Guia da Epoch Operation: Taubound (Warframe): onde clicar, melhores missões, loja da Praghasa com checklist e calculadora de Moonflesh.">
+<meta name="theme-color" content="#06080c">
+<meta property="og:title" content="Taubound — Guia do Tenno">
+<meta property="og:description" content="Moonflesh, loja da Praghasa, checklist e calculadora. Evento único até 17/11.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='6' width='20' height='20' transform='rotate(45 16 16)' fill='%2306080c' stroke='%23d4b46a' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23e58a97'/%3E%3C/svg%3E">
+<script src="assets/js/theme-init.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav><div class="bar2"><div class="links" id="nav">
+  <a href="#resumo">Resumo</a><a href="#clicar">Onde clicar</a><a href="#rotina">Rotina</a><a href="#missoes">Missões</a>
+  <a href="#loja">Loja</a><a href="#arcanos">Arcanos</a><a href="#calc">Calculadora</a><a href="#xaku">Seu loadout</a>
+  <a href="#armadilhas">Armadilhas</a><a href="#extras">Extras</a><a href="#galeria">Galeria</a><a href="#fontes">Fontes</a>
+  </div>
+  <div class="acts">
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="Alternar tema claro/escuro"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    <details class="more" id="more"><summary class="iconbtn" aria-label="Mais opções">⋯</summary>
+      <div class="menu">
+        <button type="button" id="btnExport">Exportar progresso (.json)</button>
+        <button type="button" id="btnImport">Importar progresso</button>
+        <hr>
+        <button type="button" id="btnResetAll">Apagar todo o progresso</button>
+      </div>
+    </details>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="hero-bg"><img src="https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-fe321c.png" alt="" onerror="this.remove()"></div>
+  <canvas class="particles" id="pt"></canvas>
+  <div class="wrap">
+    <div class="kicker">Epoch Operation · Evento único · Sem reprise</div>
+    <h1>Operação <span>Taubound</span></h1>
+    <p>Colete <b style="color:var(--flesh)">Moonflesh</b> dos Infestados de Eris e troque com a Praghasa, a nave-mãe Sentient, antes que ela parta para Tau. Este guia é focado em <b>máximo resultado com pouco tempo</b>.</p>
+    <div class="countdown" id="cd">
+      <div class="cd"><b id="cdD">--</b><small>dias</small></div>
+      <div class="cd"><b id="cdH">--</b><small>horas</small></div>
+      <div class="cd"><b id="cdM">--</b><small>min</small></div>
+      <div class="cd"><b id="cdS">--</b><small>seg</small></div>
+    </div>
+    <div class="cd-note">Termina em <b>17/11/2026 às 13:00 (Brasília)</b> · 11:00 EST · Moonflesh que sobrar não tem troca anunciada: gaste tudo.</div>
+  </div>
+</header>
+
+<main>
+<!-- RESUMO -->
+<section id="resumo"><div class="wrap">
+  <h2>Resumo em 30 segundos</h2>
+  <div class="grid g4 reveal">
+    <div class="card corner stat"><b>2 / 3</b><span>Moonflesh por drop (Normal / Steel Path). Chance ~2% por Infestado.</span></div>
+    <div class="card corner stat"><b>50 / 75</b><span>Por Alert concluído (Normal / SP), além dos drops da missão.</span></div>
+    <div class="card corner stat"><b>1.625</b><span>Meta mínima: 3 Archon Shards + Legendary Core (o que é progresso real).</span></div>
+    <div class="card corner stat"><b>~6–9/min</b><span>Taxa realista em Survival com 100–150 kills/min.</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="callout gold"><b>Requisito:</b> só ter concluído <b>Vor's Prize</b>. O evento libera Eris mesmo sem as Junctions.</div>
+    <div class="callout red"><b>Não funciona:</b> boosters de recurso/drop, Nekros (Desecrate), Smeeta. A Moonflesh depende só de <b>kills por minuto</b>.</div>
+  </div>
+</div></section>
+
+<!-- ONDE CLICAR -->
+<section id="clicar"><div class="wrap">
+  <h2>Onde clicar — passo a passo</h2>
+  <p class="lead">Clique em cada passo para marcar como feito (fica salvo neste navegador).</p>
+  <div class="split">
+    <div class="steps" id="steps">
+      <div class="step" data-k="s1"><div class="n"></div><div><b>Abra a Navegação e vá para Eris</b><p><span class="path">Nave → Navegação → Eris</span></p></div></div>
+      <div class="step" data-k="s2"><div class="n"></div><div><b>Visite a Praghasa uma vez</b><p>Node novo no <b>canto inferior esquerdo de Eris</b> → Relay especial. Fale com a interface na frente da nave. Isso abre a loja e libera as <b>mensagens diárias</b> do evento.</p></div></div>
+      <div class="step" data-k="s3"><div class="n"></div><div><b>Faça os Moonflesh Locus Alerts ativos</b><p>Aparecem em Eris a cada ~30–60 min e duram até ~90 min, então podem acumular até 3. Prefira o <b>Steel Path (75)</b> se você mata rápido.</p></div></div>
+      <div class="step" data-k="s4"><div class="n"></div><div><b>Farm contínuo: Zabala (Survival)</b><p>Dark Sector com spawn alto de Infestados. Squad público rende mais, porque o pickup é <b>compartilhado</b>.</p></div></div>
+      <div class="step" data-k="s5"><div class="n"></div><div><b>Volte à Praghasa e compre</b><p>Siga a ordem de prioridade da <a href="#loja">loja</a>. Marque o que já comprou.</p></div></div>
+    </div>
+    <figure class="reveal"><img src="https://itemlevel.net/wp-content/uploads/2026/10/epoch-operation-taubound-praghasa.png" alt="Praghasa" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Praghasa e o medidor de progresso da comunidade · imagem: Digital Extremes via Item Level Gaming</figcaption></figure>
+  </div>
+  <div class="callout" style="margin-top:16px"><b>A quest "Tau Prologue"</b> é separada e permanente. Ela não dá Moonflesh nem recompensas do evento, então deixe para depois (exige The Hex e The Old Peace).</div>
+</div></section>
+
+<!-- ROTINA -->
+<section id="rotina"><div class="wrap">
+  <h2>Rotina por sessão</h2>
+  <p class="lead">Escolha quanto tempo você tem hoje.</p>
+  <div class="tabs" data-tabs="rot">
+    <button class="on" data-t="r1">15–20 min</button><button data-t="r2">~1 hora</button><button data-t="r3">2 horas ou mais</button>
+  </div>
+  <div class="tabpane on" id="r1"><div class="card"><div class="timeline">
+    <div><b>0–15 min:</b> faça <b>só os Alerts</b> ativos em Eris (1–3). É o melhor retorno por minuto do evento.</div>
+    <div><b>Final:</b> passe na Praghasa e compre o próximo item da prioridade.</div>
+    <div><span class="tag t-void">Rende</span> ~75–225 Moonflesh com Alerts no Steel Path.</div>
+  </div></div></div>
+  <div class="tabpane" id="r2"><div class="card"><div class="timeline">
+    <div><b>0–15 min:</b> todos os Alerts ativos.</div>
+    <div><b>15–55 min:</b> Zabala Survival em squad público. Saia quando o kill rate cair ou o life support apertar.</div>
+    <div><b>55–60 min:</b> loja da Praghasa.</div>
+    <div><span class="tag t-void">Rende</span> ~400–550 Moonflesh.</div>
+  </div></div></div>
+  <div class="tabpane" id="r3"><div class="card"><div class="timeline">
+    <div><b>Início:</b> todos os Alerts.</div>
+    <div><b>Bloco 1 (~45 min):</b> Zabala Survival.</div>
+    <div><b>Checagem:</b> volte ao mapa. Se surgiu Alert novo, faça.</div>
+    <div><b>Bloco 2:</b> Zabala de novo, ou <b>Xini</b> se você precisa de relíquias Axi (garantidas nas rotações B e C, segundo o vídeo).</div>
+    <div><b>Final:</b> loja. Dica do vídeo: alterne Survival e Alerts para não enjoar.</div>
+  </div></div></div>
+</div></section>
+
+<!-- MISSOES -->
+<section id="missoes"><div class="wrap">
+  <h2>Missões em Eris</h2>
+  <p class="lead">Ranking por objetivo. Filtre pelo que você quer ganhar <i>junto</i> com a Moonflesh.</p>
+  <div class="filters" id="mfilters">
+    <button class="chip on" data-f="all">Todas</button><button class="chip" data-f="mf">Só Moonflesh</button><button class="chip" data-f="relic">Relíquias</button><button class="chip" data-f="nidus">Nidus</button>
+  </div>
+  <div class="scroll"><table class="tbl" id="mtable">
+    <thead><tr><th>Node</th><th>Tipo</th><th>Moonflesh</th><th>Bônus</th><th>Quando usar</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p style="color:var(--muted);font-size:.9rem;margin-top:10px">As taxas de relíquia vêm do vídeo que você mandou e não foram conferidas no wiki.</p>
+  <div class="callout gold"><b>Steel Path ou Normal?</b> O SP dá +50% por drop e mais spawn, mas só compensa se você mata Infestados de SP em 1–2 hits. Se demora, o Normal rende mais por minuto.</div>
+</div></section>
+
+<!-- LOJA -->
+<section id="loja"><div class="wrap">
+  <div class="shop-head">
+    <div><h2>Loja da Praghasa</h2><p class="lead">Clique para marcar o que já tem ou comprou. Os totais e a calculadora se atualizam sozinhos.</p></div>
+    <div style="min-width:260px">
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Concluído</span><b id="shopPct">0%</b></div>
+      <div class="bar"><i id="shopBar"></i></div>
+      <div style="color:var(--muted);font-size:.9rem;margin-top:4px">Falta: <b id="shopLeft" style="color:var(--flesh)">0</b> Moonflesh (sem arcanos e sem repetíveis)</div>
+    </div>
+  </div>
+  <div id="shop"></div>
+  <div class="group card">
+    <h3>Repetíveis (só com a sobra)</h3>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th>Item</th><th>Custo</th><th>Limite</th><th>Custo máximo</th><th>Vale?</th></tr></thead>
+      <tbody>
+        <tr><td>2.000 Kuva</td><td>20</td><td>25×</td><td>500</td><td><span class="tag t-ok">Bom</span> 50.000 Kuva no total</td></tr>
+        <tr><td>100 Endo</td><td>1</td><td>300×</td><td>300</td><td><span class="tag t-ok">Bom</span> 30.000 Endo</td></tr>
+        <tr><td>10.000 Créditos</td><td>3</td><td>100×</td><td>300</td><td><span class="tag t-mut">Ok</span> 1 milhão de créditos</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="callout red"><b>Armadilha:</b> as peças <b>Contegorus</b> só liberam com o progresso da comunidade (30% / 60% / 90%) e, mesmo liberadas, precisam ser compradas. Reserve 525 e volte perto do fim do evento.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="resetShop">Limpar marcações</button></div>
+</div></section>
+
+<!-- ARCANOS -->
+<section id="arcanos"><div class="wrap">
+  <h2>Arcanos</h2>
+  <p class="lead">Cada arcano chega ao rank máximo (R5) com <b>21 cópias</b>. O limite é 42 por tipo (dois sets). Marque só os que você <b>vai usar</b>; maximizar todos custa cerca de 1.700.</p>
+  <div class="items" id="arcs"></div>
+  <div class="card" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <span>Custo dos arcanos selecionados:</span><b style="font:700 1.6rem Cinzel;color:var(--flesh)"><span class="mf"></span><span id="arcTotal">0</span></b>
+  </div>
+</div></section>
+
+<!-- CALC -->
+<section id="calc"><div class="wrap">
+  <h2>Calculadora de tempo</h2>
+  <p class="lead">Usa o que você <b>não marcou</b> na loja e os arcanos selecionados.</p>
+  <div class="grid g2">
+    <div class="card calc">
+      <label>Moonflesh que você tem agora</label><input type="number" id="cHave" min="0" value="0">
+      <label>Até que prioridade você quer comprar?</label>
+      <select id="cTier">
+        <option value="1">P1 — só progresso (Shards + Core)</option>
+        <option value="2">P1 + P2 (armas para MR)</option>
+        <option value="3" selected>P1 a P3 (+ cosméticos exclusivos)</option>
+        <option value="4">Tudo (inclui cosméticos que voltaram)</option>
+      </select>
+      <label><input type="checkbox" id="cArc" checked style="accent-color:var(--void)"> Incluir arcanos selecionados</label>
+      <label>Minutos de farm por dia: <b id="cMinV">60</b></label><input type="range" id="cMin" min="10" max="240" step="5" value="60">
+      <label>Taxa de farm (Moonflesh/min): <b id="cRateV">7</b></label><input type="range" id="cRate" min="3" max="14" step="0.5" value="7">
+      <label>Alerts por dia: <b id="cAlV">2</b></label><input type="range" id="cAl" min="0" max="10" step="1" value="2">
+      <label>Dificuldade dos Alerts</label>
+      <select id="cSp"><option value="75" selected>Steel Path (75)</option><option value="50">Normal (50)</option></select>
+    </div>
+    <div class="card corner out">
+      <div><span style="color:var(--muted)">Meta</span><div class="big"><span class="mf"></span><span id="oGoal">0</span></div></div>
+      <div><span style="color:var(--muted)">Falta</span><div class="big" style="color:var(--flesh)" id="oLeft">0</div></div>
+      <div><span style="color:var(--muted)">Ganho estimado por dia</span><div class="big" style="font-size:1.6rem" id="oDay">0</div></div>
+      <div><span style="color:var(--muted)">Dias necessários</span><div class="big" id="oDays">0</div></div>
+      <div class="verdict" id="oVerdict">—</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- XAKU -->
+<section id="xaku"><div class="wrap">
+  <h2>Seu loadout: Xaku Prime · Orthos Prime · Companheiro</h2>
+  <div class="split">
+    <div>
+      <div class="card corner">
+        <h3>Xaku Prime no Taubound</h3>
+        <p style="color:var(--muted);margin:.2em 0 .6em">Sua build: Força 279% · Alcance 250% · Duração 128% · Eficiência 45% · 715 de energia · Molt Augmented + Arcane Blessing.</p>
+        <ul class="clean">
+          <li><b>Grasp of Lohk funciona contra Infestados.</b> Se o inimigo não tem arma, o Xaku ganha uma <b>réplica de Void da sua primária</b> que orbita e atira sozinha. Ou seja, as "torres" funcionam aqui.</li>
+          <li><b>Exceção: Overguard.</b> Eximus com Overguard não geram réplica. Os Alerts vêm cheios de Eximus, então nesses você vai precisar atirar ou usar melee.</li>
+          <li>Infestados vêm até você, o que combina com o seu estilo de não mirar: fique em corredores e deixe as armas trabalharem.</li>
+          <li>O gargalo vai ser <b>buscar os drops</b>, não matar. Em squad o pickup é compartilhado. Se jogar solo, use Enemy Radar ou mods de velocidade.</li>
+          <li><b>Shards:</b> você tem 3 Crimson, 1 Amber e 1 Violet. O evento vende Tauforged Crimson e Amber: se algum dos seus for comum, a versão Tauforged é um upgrade direto no mesmo encaixe (as Tauforged têm bônus maior que as comuns). A Azure você pode guardar para outro frame.</li>
+          <li><b>Eficiência 45%</b> com Blind Rage: nos Alerts de Steel Path, de onda em onda, fique de olho na energia.</li>
+        </ul>
+      </div>
+      <div class="card corner" style="margin-top:14px">
+        <h3>Orthos Prime + Melee Influence</h3>
+        <ul class="clean">
+          <li>O seu Orthos usa <b>Melee Influence</b>, que está à venda na Praghasa por <b>8</b> cada.</li>
+          <li>Na sua tela ele aparece no <b>rank 2</b> (6 cópias). Para chegar ao R5 faltam <b>15 cópias = 120 Moonflesh</b>. É o arcano mais barato de completar para você; já deixei marcado na seção de <a href="#arcanos">Arcanos</a>.</li>
+        </ul>
+      </div>
+      <div class="card corner" style="margin-top:14px">
+        <h3>Helios ou Huras Kubrow?</h3>
+        <ul class="clean">
+          <li>Hoje você está com o <b>Huras Kubrow</b>. Nenhum companheiro muda a Moonflesh, então trocar pelo <b>Helios</b> para escanear <b>não custa nada</b> de rendimento.</li>
+          <li><b>Decisão: fique com o Huras.</b> O evento não traz nada novo para escanear (só Infestados de Eris, que você já completou no Codex). Além disso, a sua build depende da invisibilidade do Stalk para chegar perto e espalhar as explosões virais.</li>
+          <li>Deixe um <b>Codex Scanner</b> no gear wheel: o Helios usa os seus scanners.</li>
+          <li><b>Expectativa realista:</b> os Infestados de Eris completam o Codex rápido. Depois disso o Helios fica ocioso, mas ainda vale para objetos e flora do mapa.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal xaku-show" id="xshow">
+      <figure class="xmain"><img src="img/xaku1.jpg" alt="Seu Xaku Prime" id="xbig" onerror="this.closest('.xaku-show').remove()"><figcaption>Seu Xaku Prime · Void e ouro</figcaption></figure>
+      <div class="xthumbs">
+        <img src="img/xaku1.jpg" class="on" alt=""><img src="img/xaku2.jpg" alt=""><img src="img/xaku3.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ARMADILHAS -->
+<section id="armadilhas"><div class="wrap">
+  <h2>Armadilhas comuns</h2>
+  <div class="grid g3 reveal">
+    <div class="card"><span class="tag t-sent">Erro</span><h3 style="margin-top:8px">Usar booster</h3><p style="color:var(--muted);margin:0">Booster de recurso não afeta a Moonflesh. Guarde para outro farm.</p></div>
+    <div class="card"><span class="tag t-sent">Erro</span><h3 style="margin-top:8px">Esquecer o Contegorus</h3><p style="color:var(--muted);margin:0">Liberar não é ganhar. Volte e compre cada peça depois de cada marco.</p></div>
+    <div class="card"><span class="tag t-sent">Erro</span><h3 style="margin-top:8px">Guardar Moonflesh</h3><p style="color:var(--muted);margin:0">Não há troca anunciada depois de 17/11. Gaste tudo, nem que seja em Endo e Kuva.</p></div>
+    <div class="card"><span class="tag t-warn">Atenção</span><h3 style="margin-top:8px">Archon Shards: 2 ou 3?</h3><p style="color:var(--muted);margin:0">O vídeo fala em dois; a lista da loja publicada mostra <b>três</b> (Crimson, Azure e Amber). Confira na Praghasa.</p></div>
+    <div class="card"><span class="tag t-warn">Atenção</span><h3 style="margin-top:8px">"4.500 compra tudo"</h3><p style="color:var(--muted);margin:0">Pela tabela de preços, os itens únicos somam cerca de 5.750, fora os arcanos. Use a calculadora.</p></div>
+    <div class="card"><span class="tag t-warn">Atenção</span><h3 style="margin-top:8px">Maggots</h3><p style="color:var(--muted);margin:0">Os maggots pequenos não dropam Moonflesh. Não perca tempo com eles.</p></div>
+  </div>
+</div></section>
+
+<!-- EXTRAS -->
+<section id="extras"><div class="wrap">
+  <h2>Outros eventos ativos</h2>
+  <div class="grid g3">
+    <div class="card corner"><span class="tag t-warn">Até amanhã</span><h3 style="margin-top:8px">Baro Ki'Teer</h3><p style="color:var(--muted);margin:0">Visita 2: 23–25/10. Próximas: 30/10–01/11 e 06–08/11.</p></div>
+    <div class="card corner"><span class="tag t-void">Até 02/11</span><h3 style="margin-top:8px">Nights of Naberus</h3><p style="color:var(--muted);margin:0">Tactical Alert do Jack O'Naut: Jack O'Naut Keychain Sugatra, Glyph, Noggle e 50.000 créditos.</p></div>
+    <div class="card corner"><span class="tag t-mut">Até 31/12</span><h3 style="margin-top:8px">Market: 1 crédito</h3><p style="color:var(--muted);margin:0">Aba Community Event do Market: Conquera Syandana e outros cosméticos por 1 crédito.</p></div>
+  </div>
+</div></section>
+
+<!-- GALERIA -->
+<section id="galeria"><div class="wrap">
+  <h2>Galeria</h2>
+  <p class="lead">Clique para ampliar. As imagens carregam da internet; se alguma sumir, é porque o site de origem bloqueou.</p>
+  <div class="gallery" id="gal">
+    <figure><img loading="lazy" src="https://itemlevel.net/wp-content/uploads/2026/10/warframe-epoch-operation-taubound-guide-featured.png" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Epoch Operation: Taubound</figcaption></figure>
+    <figure><img loading="lazy" src="https://finalweapon.net/wp-content/uploads/2026/10/Warframe-Launches-Epoch-Operation-Taubound-Event.webp" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Arte de lançamento</figcaption></figure>
+    <figure><img loading="lazy" src="https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-ef6887-1024x576.png" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Cena do evento</figcaption></figure>
+    <figure><img loading="lazy" src="https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-e6ab9c-1024x576.png" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Cena do evento</figcaption></figure>
+    <figure><img loading="lazy" src="https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-5e441e-1024x576.png" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Recompensas</figcaption></figure>
+    <figure><img loading="lazy" src="https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-fff5ba-1024x576.png" alt="Taubound" onerror="this.closest('figure').remove()"><figcaption>Recompensas</figcaption></figure>
+  </div>
+  <p style="color:var(--muted);font-size:.85rem">Imagens © Digital Extremes, exibidas a partir de Item Level Gaming, Final Weapon e AllThingsHow.</p>
+</div></section>
+
+<!-- FONTES -->
+<section id="fontes"><div class="wrap">
+  <h2>Fontes</h2>
+  <ul class="clean">
+    <li><a href="https://forums.warframe.com/topic/1528603-epoch-operation-taubound/" target="_blank">Anúncio oficial — Epoch Operation: Taubound (fórum)</a>: progresso da comunidade e troféus de clã</li>
+    <li><a href="https://www.warframe.com/en/news/warframes-halloween-2026-events" target="_blank">Warframe — Halloween 2026 Events</a></li>
+    <li><a href="https://allthings.how/warframe-operation-taubound-moonflesh-farming-and-reward-list/" target="_blank">AllThingsHow — Lista de recompensas e preços</a></li>
+    <li><a href="https://itemlevel.net/warframe-epoch-operation-taubound-guide/" target="_blank">Item Level Gaming — Guia Taubound</a></li>
+    <li><a href="https://wiki.warframe.com/w/Moonflesh" target="_blank">Warframe Wiki — Moonflesh</a></li>
+    <li><a href="https://wiki.warframe.com/w/Grasp_of_Lohk" target="_blank">Warframe Wiki — Grasp of Lohk</a></li>
+    <li><a href="https://www.youtube.com/watch?v=amCGne8mqeA" target="_blank">Vídeo de referência (YouTube)</a></li>
+  </ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">Guia pessoal · gerado em 24/10/2026 · Preços conforme a lista publicada em 16/10. Se algo divergir, vale o que aparece no jogo.</div></footer>
+
+<div class="lightbox" id="lb"><img alt=""></div>
+<div class="toTop" id="top"><span>↑</span></div>
+
+<!-- Ordem importa: dados → base → recursos da página -->
+<script src="assets/js/data.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/header.js"></script>
+<script src="assets/js/guide.js"></script>
+<script src="assets/js/planner.js"></script>
+<script src="assets/js/effects.js"></script>
+</body>
+</html>
