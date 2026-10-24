@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 4 · Fundição</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+:root{--bg:#0b1729;--grid:rgba(127,211,255,.07);--grid2:rgba(127,211,255,.14);--panel:rgba(14,32,54,.85);--line:#2c4c70;--text:#e4eefb;--muted:#97aecb;--ink:#7fd3ff;--amber:#ffc35a;--flesh:#ff8fa8;--solid:rgba(127,211,255,.22)}
+:root[data-theme="light"]{--bg:#f5f7f2;--grid:rgba(20,95,150,.06);--grid2:rgba(20,95,150,.13);--panel:rgba(255,255,255,.9);--line:#bccbd9;--text:#12233a;--muted:#4a5c71;--ink:#145f96;--amber:#875700;--flesh:#a5304d;--solid:rgba(20,95,150,.14)}
+.rc{background:linear-gradient(var(--grid2) 1px,transparent 1px) 0 0/100px 100px,linear-gradient(90deg,var(--grid2) 1px,transparent 1px) 0 0/100px 100px,linear-gradient(var(--grid) 1px,transparent 1px) 0 0/20px 20px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/20px 20px,var(--bg);color:var(--text);font:400 15.5px/1.5 Barlow,sans-serif}
+.tb{display:grid;grid-template-columns:1.2fr 1.6fr .7fr 1.1fr;border-bottom:1.5px solid var(--ink)}
+.tb>div{padding:8px 14px;border-right:1px solid var(--line)}
+.tb>div:last-child{border-right:0}
+.lb{display:block;font:600 10px Oxanium,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.tb b{font:700 15px Oxanium,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.tb [data-cd]{color:var(--amber);font-variant-numeric:tabular-nums}
+.fd-head{padding:26px 24px 8px}
+.fd-head h1{font:800 72px/1 Oxanium,sans-serif;letter-spacing:.04em;margin:0;color:transparent;-webkit-text-stroke:1.5px var(--ink);text-transform:uppercase}
+.fd-head h2{font:600 22px Oxanium,sans-serif;margin:4px 0 0;letter-spacing:.04em}
+.dim{position:relative;display:flex;align-items:center;gap:10px;margin:18px 0 0;color:var(--ink);font:600 12px Oxanium,sans-serif;letter-spacing:.14em}
+.dim::before,.dim::after{content:"";flex:1;height:0;border-top:1px solid var(--ink)}
+.dim i{position:absolute;top:50%;width:1px;height:14px;margin-top:-7px;background:var(--ink)}
+.dim i:first-child{left:0}.dim i:last-of-type{right:0}
+.fd-sec{padding:18px 24px}
+.fd-sec h3{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;font:700 14px Oxanium,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.fd-sec h3 span{font-weight:400;color:var(--muted);letter-spacing:.08em}
+.queue{display:flex;height:34px;border:1.5px solid var(--ink);margin-bottom:6px}
+.qs{position:relative;flex:var(--w) 1 0;border-right:1px solid var(--ink);overflow:hidden}
+.qs:last-child{border-right:0}
+.qs::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,var(--amber) 0 6px,transparent 6px 12px);transform:scaleX(0);transform-origin:left;transition:transform .8s ease-out;opacity:.85}
+.qs[data-on="1"]::before{transform:scaleX(1)}
+.qlab{display:flex}
+.qlab span{flex:var(--w) 1 0;font:600 11px Oxanium,sans-serif;letter-spacing:.08em;color:var(--muted);padding-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.qsum{margin:8px 0 0;color:var(--muted)}
+.qsum b{color:var(--amber);font-family:Oxanium,sans-serif}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.plan{display:flex;flex-direction:column;padding:0;background:var(--panel);border:1.5px solid var(--line);color:inherit;font:inherit;text-align:left;cursor:pointer;transition:border-color .3s}
+.plan:hover{border-color:var(--ink)}
+.plan svg{display:block;width:100%;height:auto;padding:12px 18px 4px}
+.plan svg .w{fill:transparent;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:3 3;transition:fill .6s .5s}
+.plan svg .c{fill:none;stroke:var(--muted);stroke-width:.8;stroke-dasharray:2 3}
+.plan .ttl{display:grid;grid-template-columns:1fr auto;border-top:1.5px solid var(--line)}
+.plan .ttl>span{padding:6px 10px;border-right:1px solid var(--line)}
+.plan .ttl>span:last-child{border-right:0}
+.plan .ttl .full{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line)}
+.plan .nm{display:block;font:600 14.5px/1.25 Oxanium,sans-serif;min-height:2.5em}
+.plan .cs{font:700 18px Oxanium,sans-serif;color:var(--flesh)}
+.plan .st{font:700 12px Oxanium,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.plan .st::after{content:"Na fila"}
+.plan[data-on="1"]{border-color:var(--ink)}
+.plan[data-on="1"] svg .w{fill:var(--solid);stroke-dasharray:none}
+.plan[data-on="1"] .st{color:var(--amber)}
+.plan[data-on="1"] .st::after{content:"Construído"}
+.plan[data-on="1"][data-just="1"] svg .w{stroke-dasharray:300;animation:fddraw .7s ease-out}
+@keyframes fddraw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+.mat{width:100%;border-collapse:collapse;background:var(--panel)}
+.mat th,.mat td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+.mat th{font:600 10.5px Oxanium,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.mat td:first-child{font:700 15px Oxanium,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.yld{display:inline-flex;gap:3px;vertical-align:middle}
+.yld i{width:11px;height:11px;border:1.5px solid var(--ink)}
+.yld i.on{background:var(--ink)}
+.note{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;margin-top:14px;padding:10px 14px;border:1.5px dashed var(--amber);color:var(--text)}
+.note b{font:700 12px Oxanium,sans-serif;letter-spacing:.14em;color:var(--amber);padding-top:2px}
+@container rc (max-width:640px){
+  .tb{grid-template-columns:1fr 1fr}
+  .tb>div:nth-child(2){border-right:0}
+  .tb>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .fd-head{padding:22px 18px 6px}
+  .fd-head h1{font-size:46px}
+  .fd-head h2{font-size:18px}
+  .fd-sec{padding:16px 18px}
+  .plans{grid-template-columns:1fr 1fr;gap:10px}
+  .qlab span{font-size:10px}
+  .qlab b{display:none}
+  .mat thead{display:none}
+  .mat,.mat tbody,.mat tr,.mat td{display:block;width:100%}
+  .mat tr{border:1px solid var(--line);margin-bottom:8px}
+  .mat td{border:0;padding:4px 12px}
+  .mat td:first-child{padding-top:10px}
+  .mat td:last-child{padding-bottom:10px;color:var(--muted)}
+}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  // Desenhos técnicos simples de cada planta (viewBox 120×80).
+  const shard = '<path class="w" d="M60 6 L82 30 L72 74 L48 74 L38 30 Z M60 6 L60 74 M38 30 L82 30"/>';
+  const ART = {
+    crim: shard, azure: shard, amber: shard,
+    core: '<circle class="w" cx="60" cy="40" r="30"/><circle class="w" cx="60" cy="40" r="15"/><path class="w" d="M60 10 V25 M60 55 V70 M30 40 H45 M75 40 H90"/>',
+  };
+  const SHORT = { crim: 'Crimson', azure: 'Azure', amber: 'Amber', core: 'Core' };
+
+  PR.init({
+    n: 4,
+    nome: 'Fundição do Orbiter',
+    fonte: 'interface do jogo + desenho técnico',
+    frase: 'O guia é a <b>Fundição do Orbiter</b> desenhada como planta técnica: cada item da Praghasa é uma planta que você constrói com Moonflesh, e a fila de construção mostra quanto já saiu do forno.',
+    paletas: {
+      dark: { nome: 'Planta noturna', sub: 'Escuro · cópia heliográfica azul', cores: [['Papel azul', '#0b1729'], ['Painel', '#0e2036'], ['Cota', '#2c4c70'], ['Texto', '#e4eefb'], ['Traço', '#7fd3ff'], ['Forno', '#ffc35a'], ['Moonflesh', '#ff8fa8']] },
+      light: { nome: 'Papel vegetal', sub: 'Claro · a prancheta do engenheiro', cores: [['Vegetal', '#f5f7f2'], ['Painel', '#ffffff'], ['Cota', '#bccbd9'], ['Texto', '#12233a'], ['Traço', '#145f96'], ['Forno', '#875700'], ['Moonflesh', '#a5304d']] },
+    },
+    fontes: [
+      { nome: 'Oxanium', uso: 'títulos vazados, carimbos, cotas', css: 'Oxanium', amostra: 'PLANTA 375 MF' },
+      { nome: 'Barlow', uso: 'texto e tabelas', css: 'Barlow', amostra: 'Reserve 525 para o Contegorus.' },
+    ],
+    assinatura: 'Marcar uma planta faz o <b>desenho técnico se traçar</b> de novo e preencher, de tracejado para sólido, e o carimbo muda de “Na fila” para “Construído”. A <b>fila de construção</b> é uma barra dividida em pedaços do tamanho exato de cada custo, que se enchem de listras de forno.',
+    experimente: 'marque o Legendary Core e veja o maior segmento da fila encher.',
+    pecas: [
+      ['Topo', 'Carimbo de prancha (Fundição · projeto · folha · fecha em) e o título vazado com a cota “1.625 Moonflesh”.'],
+      ['Seções', 'Folhas numeradas da prancha (FOLHA 01, 02…).'],
+      ['Loja / checklist', 'Plantas com desenho técnico e bloco de título: nome, custo, status.'],
+      ['Progresso', 'Fila de construção proporcional ao custo de cada item.'],
+      ['Missões', '“Onde conseguir o material”: tabela técnica com rendimento em quadradinhos.'],
+      ['Armadilhas', 'Notas de projeto com borda tracejada âmbar (NOTA 1, NOTA 2…).'],
+      ['Calculadora', 'O cronômetro da Fundição: quantos dias até a fila terminar.'],
+    ],
+    render(root) {
+      const p1 = PR.p1();
+      const ms = ['Zabala', 'Locus Alerts', 'Xini', 'Oestrus'].map(PR.mission);
+      root.innerHTML = `
+      <div class="tb"><div><span class="lb">Fundição</span><b>Orbiter</b></div><div><span class="lb">Projeto</span><b>Operação Taubound</b></div>
+        <div><span class="lb">Folha</span><b>02 / 07</b></div><div><span class="lb">Fecha em</span><b data-cd></b></div></div>
+      <div class="fd-head"><h1>Taubound</h1><h2>Plantas da Praghasa · prioridade 1</h2>
+        <div class="dim"><i></i>META MÍNIMA ${PR.fmt(PR.goal())} MOONFLESH<i></i></div></div>
+      <section class="fd-sec"><h3>Fila de construção <span>proporcional ao custo</span></h3>
+        <div class="queue">${p1.map(i => `<span class="qs" data-item="${i.id}" style="--w:${i.cost}"></span>`).join('')}</div>
+        <div class="qlab">${p1.map(i => `<span style="--w:${i.cost}">${SHORT[i.id]}<b> · ${i.cost}</b></span>`).join('')}</div>
+        <p class="qsum"></p></section>
+      <section class="fd-sec"><h3>Plantas <span>toque para marcar como construída</span></h3>
+        <div class="plans">${p1.map((i, n) => `<button class="plan" type="button" data-item="${i.id}">
+          <svg viewBox="0 0 120 80" aria-hidden="true"><path class="c" d="M4 76 H116 M4 4 V76"/>${ART[i.id]}</svg>
+          <span class="ttl"><span class="full"><span class="lb">Planta ${String(n + 1).padStart(2, '0')}</span><span class="nm">${i.name}</span></span>
+          <span><span class="lb">Status</span><span class="st"></span></span><span><span class="lb">Custo</span><span class="cs">${i.cost}</span></span></span></button>`).join('')}</div></section>
+      <section class="fd-sec"><h3>Onde conseguir o material</h3>
+        <table class="mat"><thead><tr><th>Node</th><th>Tipo</th><th>Rendimento</th><th>Quando usar</th></tr></thead><tbody>${ms.map(m => `
+          <tr><td>${m.node}</td><td>${m.type}</td><td><span class="yld" aria-label="${m.rating} de 5">${[1, 2, 3, 4, 5].map(k => `<i class="${k <= m.rating ? 'on' : ''}"></i>`).join('')}</span></td><td>${m.when}</td></tr>`).join('')}</tbody></table>
+        <div class="note"><b>NOTA 1</b><span>Boosters de recurso, Nekros e Smeeta <b>não</b> afetam a Moonflesh. Só kills por minuto contam.</span></div></section>`;
+    },
+    update(root) {
+      root.querySelector('.qsum').innerHTML = PR.left() ? `Construído <b>${PR.fmt(PR.got())}</b> de ${PR.fmt(PR.goal())} · faltam <b>${PR.fmt(PR.left())}</b> Moonflesh` : '<b>Fila concluída.</b> Todas as plantas da prioridade 1 saíram do forno.';
+    },
+    tick(root, c) {
+      root.querySelector('[data-cd]').textContent = `${c.d}d ${PR.pad(c.h)}:${PR.pad(c.m)}:${PR.pad(c.s)}`;
+    },
+  });
+})();
+</script>
+</body>
+</html>

@@ -30,7 +30,7 @@
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    themeMeta.setAttribute('content', theme === 'dark' ? '#06080c' : '#f3efe6');
+    themeMeta.setAttribute('content', theme === 'dark' ? '#0b0a0f' : '#f4efe9');
   }
   applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 

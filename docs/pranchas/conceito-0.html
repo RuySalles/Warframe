@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 0 · Site anterior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+/* O recorte desta prancha é o próprio site, em iframes: o visual vem do assets/css/style.css real. */
+.s0-jump{display:flex;gap:6px;flex-wrap:wrap;padding:8px;background:#0d0e10;border-bottom:1px solid var(--pr-line)}
+.s0-jump button{min-height:44px;padding:0 12px;background:transparent;color:var(--pr-muted);border:1px solid var(--pr-line);border-radius:8px;font:600 13px system-ui,sans-serif;cursor:pointer}
+.s0-jump button[aria-pressed="true"]{color:var(--pr-bg);background:var(--pr-text);border-color:var(--pr-text)}
+.s0-frame{display:block;width:100%;border:0;background:#06080c}
+.rc[data-size="desk"] .s0-frame{height:1200px}
+.rc[data-size="phone"] .s0-frame{height:1200px}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  const SITE = 'v1/index.html'; // cópia do site antes do Sinal Interceptado
+  const JUMPS = [['', 'Topo'], ['resumo', 'Resumo'], ['clicar', 'Onde clicar'], ['missoes', 'Missões'], ['loja', 'Loja'], ['calc', 'Calculadora'], ['xaku', 'Loadout']];
+  let theme = 'dark';
+
+  // O tema vai pela URL (?tema=, lido pelo theme-init.js do site), porque por file:// o navegador
+  // bloqueia o acesso ao conteúdo do iframe. Trocar o tema recarrega o site na seção em que estava.
+  // `r` evita que o navegador mostre uma cópia antiga do site guardada em cache.
+  const url = (hash) => `${SITE}?tema=${theme}&r=${Date.now()}${hash ? '#' + hash : ''}`;
+
+  PR.init({
+    n: 0,
+    nome: 'Site anterior (v1)',
+    fonte: 'como era antes do Sinal Interceptado',
+    frase: 'O guia é um <b>painel do Tenno</b> em Void e ouro: página longa de conteúdo, com a arte do evento no topo, cartões com cantos dourados e losangos Orokin marcando títulos, passos e botões.',
+    paletas: {
+      dark: { nome: 'Escuro (atual)', sub: 'Sentient e ouro · sem nome de cena ainda', cores: [['Fundo', '#06080c'], ['Painel', '#0f151e'], ['Linha', '#243041'], ['Texto', '#e7e2d4'], ['Ouro', '#d4b46a'], ['Void', '#5fe0d0'], ['Sentient', '#d0464f'], ['Moonflesh', '#e58a97']] },
+      light: { nome: 'Claro (atual)', sub: 'Papel creme · sem nome de cena ainda', cores: [['Fundo', '#f3efe6'], ['Painel', '#fffdf8'], ['Linha', '#d6ccb8'], ['Texto', '#1c2128'], ['Ouro', '#7d5f17'], ['Void', '#0b6f65'], ['Sentient', '#a52f38'], ['Moonflesh', '#a3404f']] },
+    },
+    fontes: [
+      { nome: 'Cinzel', uso: 'títulos, números da contagem e preços', css: 'Cinzel', amostra: 'Operação Taubound' },
+      { nome: 'Rajdhani', uso: 'texto, menu, botões e tabelas', css: 'Rajdhani', amostra: 'Gaste tudo, nem que seja em Endo.' },
+    ],
+    assinatura: 'Hoje o que mais se aproxima disso são as <b>partículas de Void e Moonflesh</b> subindo pela arte do topo e o <b>losango dourado</b> que se repete (títulos, passos numerados, botão de voltar ao topo). Marcar um item só deixa a linha apagada com um ✓ verde. Falta um gesto que seja só deste guia.',
+    experimente: 'use os atalhos acima de cada recorte para pular até a Loja e marcar um item; troque o tema no topo.',
+    pecas: [
+      ['Topo', 'Arte do evento (imagem externa) com partículas, título em Cinzel e quatro caixas de contagem com borda vermelha. É escuro nos dois temas.'],
+      ['Menu', 'Barra fixa com 12 links em pílula, mais o botão de tema e o menu ⋯ (exportar/importar).'],
+      ['Seções', 'Título com losango dourado e conteúdo em cartões, todas com o mesmo ritmo de página longa.'],
+      ['Resumo', 'Quatro cartões de números com cantos dourados e dois avisos (ouro e vermelho).'],
+      ['Onde clicar', 'Passos numerados em losango; marcado = apagado com ✓ verde.'],
+      ['Missões', 'Tabela com filtros em pílula e rendimento em ◆◆◆◆◆.'],
+      ['Loja / checklist', 'Lista de itens com caixinha quadrada, barra de progresso vermelho→ouro e total por prioridade.'],
+      ['Calculadora', 'Formulário com campos e sliders; resultado em número grande e um veredito colorido.'],
+      ['Loadout', 'Fotos do Xaku com miniaturas e texto da build ao lado.'],
+    ],
+    extra: `<section class="pr-crit">
+      <div><h2>O que já funciona</h2><ul>
+        <li>Lê bem: hierarquia clara, contraste bom nos dois temas, alvos de 44 px.</li>
+        <li>As cores já contam a história do evento: Void, Sentient, ouro e Moonflesh.</li>
+        <li>O conteúdo está todo ali e o checklist e a calculadora conversam entre si.</li></ul></div>
+      <div><h2>O que as pranchas 1–5 tentam resolver</h2><ul>
+        <li>É uma “página de conteúdo” genérica: tirando a cor, poderia ser de qualquer jogo.</li>
+        <li>Cinzel + ouro + losango fica perto do guia do LEGO (Cinzel) e da prancha 5 (Orokin).</li>
+        <li>O progresso é uma barra comum; nenhuma peça é um objeto do mundo do Warframe.</li>
+        <li>O topo depende de uma imagem de outro site, que pode sumir.</li>
+        <li>O topo fica escuro também no tema claro, então a primeira tela é igual nos dois; a diferença só aparece a partir do Resumo.</li></ul></div>
+    </section>`,
+    rodape: 'O recorte desta prancha é a cópia do site anterior (<code>docs/pranchas/v1</code>), em iframes; ela usa o mesmo progresso salvo do site. Marcar algo aqui grava no progresso salvo deste navegador.',
+    render(root) {
+      root.innerHTML = `<div class="s0-jump" role="group" aria-label="Ir para a seção">${JUMPS.map(([id, t], i) =>
+        `<button type="button" data-j="${id}" aria-pressed="${i === 0}">${t}</button>`).join('')}</div>
+        <iframe class="s0-frame" src="${url('')}" title="Site atual do guia Taubound"></iframe>`;
+      const frame = root.querySelector('iframe');
+      root.querySelector('.s0-jump').addEventListener('click', e => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        root.querySelectorAll('.s0-jump button').forEach(x => x.setAttribute('aria-pressed', x === b));
+        frame.dataset.j = b.dataset.j;
+        try {
+          // scrollIntoView rolaria a prancha também; rola só o iframe, descontando o menu fixo do site.
+          const win = frame.contentWindow, el = b.dataset.j && frame.contentDocument.getElementById(b.dataset.j);
+          win.scrollTo({ top: el ? el.getBoundingClientRect().top + win.scrollY - 56 : 0, behavior: 'smooth' });
+        } catch (err) { frame.src = url(b.dataset.j); }
+      });
+    },
+    theme(t) {
+      if (t === theme) return;
+      theme = t;
+      document.querySelectorAll('.s0-frame').forEach(f => { f.src = url(f.dataset.j); });
+    },
+  });
+})();
+</script>
+</body>
+</html>

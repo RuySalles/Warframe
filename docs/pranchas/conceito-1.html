@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 1 · Carta de Navegação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+:root{--bg:#070b12;--panel:rgba(13,21,33,.9);--line:#1f3347;--line2:#2f4f6d;--text:#dfe8f1;--muted:#8fa5b9;--acc:#4fd6ff;--flesh:#ff7a9c;--gold:#e8c36a;--alert:#ffb547;--pl1:#3d6a8f;--pl2:#0c1826;--glow:rgba(79,214,255,.18)}
+:root[data-theme="light"]{--bg:#edf2f7;--panel:rgba(255,255,255,.94);--line:#c5d3df;--line2:#94abc0;--text:#10202e;--muted:#475a6b;--acc:#06658a;--flesh:#ad2d55;--gold:#7d5c0c;--alert:#8f5300;--pl1:#a9c2d8;--pl2:#dde7f0;--glow:rgba(6,101,138,.10)}
+.rc{background:radial-gradient(700px 380px at 60% 30%,var(--glow),transparent 70%),var(--bg);color:var(--text);font:400 15px/1.5 "IBM Plex Sans",sans-serif}
+.nv-hud{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:10px 18px;border-bottom:1px solid var(--line);font:600 12px "Chakra Petch",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nv-crumb b{color:var(--text)}
+.nv-crumb i{font-style:normal;color:var(--acc);margin:0 6px}
+.nv-cd{display:flex;gap:10px;align-items:baseline}
+.nv-cd b{font-size:20px;color:var(--acc);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.nv-title{padding:20px 18px 14px}
+.nv-title h1{font:700 38px/1 "Chakra Petch",sans-serif;letter-spacing:.05em;text-transform:uppercase;margin:0 0 8px}
+.nv-title h1 span{color:var(--flesh)}
+.nv-title p{margin:0;max-width:62ch;color:var(--muted)}
+.nv-title p b{color:var(--text)}
+.nv-main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(250px,1fr);border-block:1px solid var(--line)}
+.nv-chart svg{display:block;width:100%;height:auto}
+.orb{fill:none;stroke:var(--line2);stroke-width:1.2;stroke-dasharray:2 7}
+.nv-node{cursor:pointer;outline:none}
+.nv-node .hit{fill:transparent}
+.nv-node .dot{fill:var(--bg);stroke:var(--acc);stroke-width:2.2;transition:fill .2s}
+.nv-node text{fill:var(--text);font-family:"Chakra Petch",sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.nv-node .sub{fill:var(--muted);font-weight:500;letter-spacing:.04em}
+.nv-node[aria-pressed="true"] .dot{fill:var(--acc)}
+.nv-node[aria-pressed="true"] .ring{opacity:1}
+.nv-node:focus-visible .dot{stroke-width:5}
+.nv-node .ring{fill:none;stroke:var(--acc);stroke-width:1.2;opacity:0;transition:opacity .2s}
+.nv-node.al .dot{stroke:var(--alert)}
+.nv-node.al[aria-pressed="true"] .dot{fill:var(--alert)}
+.nv-node.al .ring{stroke:var(--alert);animation:nvping 1.8s ease-out infinite;opacity:1;transform-box:fill-box;transform-origin:center}
+@keyframes nvping{from{transform:scale(.6);opacity:.9}to{transform:scale(1.6);opacity:0}}
+.nv-pg{fill:var(--flesh)}
+.nv-pgl{fill:var(--flesh);font-family:"Chakra Petch",sans-serif;font-weight:700;letter-spacing:.1em}
+.nv-me{fill:var(--gold)}
+.nv-mel{fill:var(--gold);font-family:"Chakra Petch",sans-serif;font-weight:600;letter-spacing:.12em}
+.route{fill:none;stroke:var(--acc);stroke-width:2.2;stroke-linecap:round}
+.route.draw{stroke-dasharray:100;animation:nvdraw .7s ease-out forwards}
+.route.flow{stroke-dasharray:3 4;animation:nvflow 1s linear infinite}
+@keyframes nvdraw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes nvflow{to{stroke-dashoffset:-7}}
+.nv-panel{border-left:1px solid var(--line);padding:16px 18px;background:var(--panel)}
+.k{font:600 11px "Chakra Petch",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nv-panel h3{font:700 26px/1.1 "Chakra Petch",sans-serif;margin:4px 0 2px;text-transform:uppercase;letter-spacing:.04em}
+.nv-type{color:var(--acc);font-weight:500;margin-bottom:12px}
+.nv-bars{display:flex;gap:4px;margin:4px 0 12px}
+.nv-bars i{width:24px;height:7px;background:var(--line);transform:skewX(-24deg)}
+.nv-bars i.on{background:var(--flesh)}
+.nv-panel dl{margin:0;display:grid;gap:8px}
+.nv-panel dd{margin:0}
+.nv-go{margin-top:14px;min-height:44px;width:100%;padding:0 14px;background:transparent;border:1.5px solid var(--acc);color:var(--acc);font:700 13px "Chakra Petch",sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.nv-go:hover{background:var(--glow)}
+.nv-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:22px;padding:18px}
+.nv-stats{display:grid;gap:12px;align-content:start}
+.nv-stat{border-left:2px solid var(--acc);padding:2px 0 2px 12px}
+.nv-stat b{display:block;font:700 24px/1.1 "Chakra Petch",sans-serif;font-variant-numeric:tabular-nums}
+.nv-stat span{color:var(--muted);font-size:14px}
+.nv-shop h4{display:flex;justify-content:space-between;gap:10px;margin:0 0 10px;font:700 15px "Chakra Petch",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.nv-shop h4 span{color:var(--flesh)}
+.nv-traj{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-bottom:12px;font:600 11px "Chakra Petch",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nv-track{position:relative;height:26px}
+.nv-track::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px dashed var(--line2)}
+.nv-fill{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;background:var(--flesh);width:0;transition:width .9s cubic-bezier(.3,.8,.3,1)}
+.nv-ship{position:absolute;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;left:0;transition:left .9s cubic-bezier(.3,.8,.3,1)}
+.nv-ship path{fill:var(--flesh)}
+.nv-left{font:500 13px "IBM Plex Sans",sans-serif;color:var(--muted);margin:-4px 0 10px}
+.nv-left b{color:var(--text)}
+.nv-items{display:grid;gap:6px}
+.nv-item{display:grid;grid-template-columns:18px 1fr auto;gap:12px;align-items:center;width:100%;min-height:48px;padding:8px 14px;background:var(--panel);border:1px solid var(--line);color:inherit;font:inherit;text-align:left;cursor:pointer;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.nv-item:hover{border-color:var(--line2)}
+.nv-item .bx{width:13px;height:13px;margin-left:2px;border:1.5px solid var(--muted);transform:rotate(45deg)}
+.nv-item .nm{font-weight:500}
+.nv-item .nt{display:block;font-size:12.5px;color:var(--muted)}
+.nv-item .cs{font:700 16px "Chakra Petch",sans-serif;color:var(--flesh);font-variant-numeric:tabular-nums}
+.nv-item[data-on="1"]{border-color:var(--acc)}
+.nv-item[data-on="1"] .bx{background:var(--acc);border-color:var(--acc)}
+.nv-item[data-on="1"] .cs{color:var(--muted)}
+.nv-item[data-on="1"] .nt::before{content:"Adquirido · ";color:var(--acc);font-weight:600}
+.nv-item[data-just="1"]{animation:nvscan .7s ease-out}
+@keyframes nvscan{0%{box-shadow:inset 0 0 0 0 var(--glow)}40%{box-shadow:inset 400px 0 0 0 var(--glow)}100%{box-shadow:inset 0 0 0 0 transparent}}
+@container rc (max-width:640px){
+  .nv-title h1{font-size:28px}
+  .nv-main{grid-template-columns:1fr}
+  .nv-panel{border-left:0;border-top:1px solid var(--line)}
+  .nv-bottom{grid-template-columns:1fr}
+  .nv-cd b{font-size:17px}
+}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  // Posições no mapa de Eris (viewBox 600×400). A Praghasa fica no canto inferior esquerdo, como no jogo.
+  const POS = { 'Zabala': [440, 118], 'Nimus': [170, 112], 'Xini': [486, 258], 'Kala-azar': [356, 334], 'Akkad': [178, 290], 'Oestrus': [292, 62], 'Locus Alerts': [528, 172] };
+  const ME = [48, 52], PG = [72, 354];
+  const SHORT = { 'Locus Alerts': 'Alerts' };
+
+  function path(to) {
+    const [x1, y1] = ME, [x2, y2] = to;
+    return `M${x1},${y1} Q${(x1 + x2) / 2 - 40},${Math.min(y1, y2) + 140} ${x2},${y2}`;
+  }
+
+  function select(root, name, draw) {
+    const m = PR.mission(name);
+    root.querySelectorAll('.nv-node').forEach(n => n.setAttribute('aria-pressed', n.dataset.node === name));
+    const r = root.querySelector('.route');
+    r.setAttribute('d', path(POS[name]));
+    r.setAttribute('pathLength', 100);
+    r.classList.remove('draw', 'flow');
+    if (draw) { void r.getBBox(); r.classList.add('draw'); setTimeout(() => { r.classList.remove('draw'); r.classList.add('flow'); }, 720); }
+    else r.classList.add('flow');
+    const p = root.querySelector('.nv-panel');
+    p.querySelector('h3').textContent = m.node;
+    p.querySelector('.nv-type').textContent = m.type;
+    p.querySelector('.nv-bars').innerHTML = [1, 2, 3, 4, 5].map(i => `<i class="${i <= m.rating ? 'on' : ''}"></i>`).join('');
+    p.querySelector('[data-f=bonus]').textContent = m.bonus;
+    p.querySelector('[data-f=when]').textContent = m.when;
+  }
+
+  PR.init({
+    n: 1,
+    nome: 'Carta de Navegação',
+    fonte: 'interface do jogo',
+    frase: 'O guia é a <b>tela de Navegação do Orbiter</b> com Eris aberta: cada missão é um node no mapa, a Praghasa está no canto inferior esquerdo e a loja é o painel de troca do Relay.',
+    paletas: {
+      dark: { nome: 'Órbita de Eris', sub: 'Escuro · a carta estelar do Orbiter', cores: [['Vácuo', '#070b12'], ['Painel', '#0d1521'], ['Linha', '#2f4f6d'], ['Texto', '#dfe8f1'], ['HUD', '#4fd6ff'], ['Moonflesh', '#ff7a9c'], ['Alerta', '#ffb547']] },
+      light: { nome: 'Carta impressa', sub: 'Claro · o mapa em papel do Relay', cores: [['Papel', '#edf2f7'], ['Painel', '#ffffff'], ['Linha', '#94abc0'], ['Texto', '#10202e'], ['HUD', '#06658a'], ['Moonflesh', '#ad2d55'], ['Alerta', '#8f5300']] },
+    },
+    fontes: [
+      { nome: 'Chakra Petch', uso: 'títulos, HUD, números', css: "'Chakra Petch'", amostra: 'ERIS · ZABALA 23:14:22' },
+      { nome: 'IBM Plex Sans', uso: 'texto corrido e dicas', css: "'IBM Plex Sans'", amostra: 'Squad público rende mais.' },
+    ],
+    assinatura: 'Clicar num node <b>traça a rota</b> do seu Orbiter até ele (linha que se desenha e depois pulsa) e abre o painel da missão, como no jogo. Cada compra na loja faz a <b>Praghasa avançar</b> na trajetória Eris → Tau.',
+    experimente: 'clique em Xini ou Akkad no mapa; marque o Legendary Core.',
+    pecas: [
+      ['Topo', 'HUD do Orbiter: trilha “Navegação / Eris / Taubound” e o cronômetro da operação.'],
+      ['Seção', 'Painéis do jogo com cantos chanfrados; o menu vira a barra lateral de Navegação.'],
+      ['Missões', 'Nodes no mapa de Eris; Alerts piscam em âmbar; a tabela vira o painel de detalhes.'],
+      ['Loja / checklist', 'Painel de troca do Relay; o quadradinho é o losango do jogo.'],
+      ['Progresso', 'A Praghasa viajando de Eris para Tau conforme você compra.'],
+      ['Calculadora', 'Painel “Planejar rota”: minutos por dia viram distância a percorrer.'],
+      ['Armadilhas', 'Avisos de “condição da missão” em âmbar, como os modificadores de node.'],
+    ],
+    render(root, size) {
+      const ph = size === 'phone';
+      const fs = ph ? 20 : 13, fss = ph ? 16 : 11, r = ph ? 9 : 7;
+      const nodes = PR.D.missions.map(m => {
+        const [x, y] = POS[m.node]; const al = m.node === 'Locus Alerts';
+        return `<g class="nv-node${al ? ' al' : ''}" data-node="${m.node}" role="button" tabindex="0" aria-label="${m.node}, ${m.type}">
+          <circle class="hit" cx="${x}" cy="${y}" r="26"/><circle class="ring" cx="${x}" cy="${y}" r="${r + 7}"/>
+          <circle class="dot" cx="${x}" cy="${y}" r="${r}"/>
+          <text x="${x}" y="${y - r - 8}" text-anchor="middle" font-size="${fs}">${SHORT[m.node] || m.node}</text>
+          ${ph ? '' : `<text class="sub" x="${x}" y="${y + r + 15}" text-anchor="middle" font-size="${fss}">${m.type.replace(/ \(.*\)/, '')}</text>`}</g>`;
+      }).join('');
+      const s = PR.D.missions;
+      root.innerHTML = `
+      <div class="nv-hud"><span class="nv-crumb">Navegação<i>/</i>Eris<i>/</i><b>Operação Taubound</b></span>
+        <span class="nv-cd">Termina em <b data-cd></b></span></div>
+      <div class="nv-title"><h1>Operação <span>Taubound</span></h1>
+        <p>Colete <b>Moonflesh</b> dos Infestados de Eris e troque na Praghasa antes que ela parta para Tau. Máximo resultado, pouco tempo.</p></div>
+      <div class="nv-main">
+        <div class="nv-chart"><svg viewBox="0 0 600 400" role="img" aria-label="Mapa de Eris com as missões">
+          <defs><radialGradient id="pl-${size}" cx="35%" cy="30%"><stop offset="0" stop-color="var(--pl1)"/><stop offset="1" stop-color="var(--pl2)"/></radialGradient></defs>
+          <ellipse class="orb" cx="320" cy="200" rx="150" ry="82" transform="rotate(-10 320 200)"/>
+          <ellipse class="orb" cx="320" cy="200" rx="250" ry="150" transform="rotate(-10 320 200)"/>
+          <circle cx="320" cy="200" r="46" fill="url(#pl-${size})" stroke="var(--line2)"/>
+          <text x="320" y="205" text-anchor="middle" font-size="${ph ? 18 : 13}" class="nv-mel" style="fill:var(--text)">ERIS</text>
+          <path class="route"/>
+          <g><circle class="nv-me" cx="${ME[0]}" cy="${ME[1]}" r="5"/><text class="nv-mel" x="${ME[0] + 12}" y="${ME[1] + 5}" font-size="${fss}">VOCÊ</text></g>
+          <g><rect class="nv-pg" x="${PG[0] - 8}" y="${PG[1] - 8}" width="16" height="16" transform="rotate(45 ${PG[0]} ${PG[1]})"/>
+            <text class="nv-pgl" x="${PG[0] + 16}" y="${PG[1] + 5}" font-size="${fs}">PRAGHASA</text></g>
+          ${nodes}
+        </svg></div>
+        <aside class="nv-panel" aria-live="polite"><div class="k">Detalhes da missão</div><h3></h3><div class="nv-type"></div>
+          <div class="k">Moonflesh</div><div class="nv-bars"></div>
+          <dl><div><dt class="k">Bônus</dt><dd data-f="bonus"></dd></div><div><dt class="k">Quando usar</dt><dd data-f="when"></dd></div></dl>
+          <button class="nv-go" type="button">Traçar rota</button></aside>
+      </div>
+      <div class="nv-bottom">
+        <div class="nv-stats">
+          <div class="nv-stat"><b>2 / 3</b><span>Moonflesh por drop (Normal / Steel Path), ~2% por Infestado</span></div>
+          <div class="nv-stat"><b>50 / 75</b><span>por Alert concluído, além dos drops</span></div>
+          <div class="nv-stat"><b>~6–9 /min</b><span>em Survival com 100–150 kills/min</span></div>
+        </div>
+        <div class="nv-shop">
+          <h4>Relay da Praghasa <span>P1 · progresso real</span></h4>
+          <div class="nv-traj"><span>Eris</span><div class="nv-track"><div class="nv-fill"></div>
+            <svg class="nv-ship" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 13 L14 5 L24 13 L14 21 Z M9 13 L14 9.5 L19 13 L14 16.5 Z" fill-rule="evenodd"/></svg></div><span>Tau</span></div>
+          <p class="nv-left"></p>
+          <div class="nv-items">${PR.p1().map(i => `<button class="nv-item" type="button" data-item="${i.id}">
+            <span class="bx"></span><span><span class="nm">${i.name}</span><span class="nt">${i.note}</span></span><span class="cs">${i.cost}</span></button>`).join('')}</div>
+        </div>
+      </div>`;
+      root.querySelectorAll('.nv-node').forEach(n => {
+        const go = () => select(root, n.dataset.node, true);
+        n.addEventListener('click', go);
+        n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+      });
+      root.querySelector('.nv-go').addEventListener('click', () => select(root, root.querySelector('.nv-panel h3').textContent, true));
+      select(root, 'Zabala', false);
+    },
+    update(root) {
+      const p = PR.pct() * 100;
+      root.querySelector('.nv-fill').style.width = p + '%';
+      root.querySelector('.nv-ship').style.left = p + '%';
+      root.querySelector('.nv-left').innerHTML = PR.left() ? `Faltam <b>${PR.fmt(PR.left())}</b> de ${PR.fmt(PR.goal())} Moonflesh para a meta mínima.` : '<b>Meta mínima concluída.</b> A Praghasa chegou a Tau.';
+    },
+    tick(root, c) {
+      root.querySelector('[data-cd]').textContent = `${c.d}d ${PR.pad(c.h)}:${PR.pad(c.m)}:${PR.pad(c.s)}`;
+    },
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 3 · Tanque de Cultura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+:root{--bg:#120b12;--cell:#1d121b;--cell2:#28172410;--line:#3e2638;--text:#f4e7ef;--muted:#b89cae;--flesh:#ff6f9a;--flesh2:#c23a6a;--bile:#c9e35c;--vein:#7a2a55;--glass:rgba(255,255,255,.06)}
+:root[data-theme="light"]{--bg:#f7eff1;--cell:#fffafb;--line:#e4cbd5;--text:#2a1520;--muted:#6d4f5f;--flesh:#b0204f;--flesh2:#e86f96;--bile:#506d00;--vein:#e8b6c9;--glass:rgba(120,30,70,.05)}
+.rc{background:radial-gradient(600px 300px at 15% 0%,color-mix(in srgb,var(--flesh) 14%,transparent),transparent 70%),radial-gradient(500px 300px at 100% 100%,color-mix(in srgb,var(--bile) 9%,transparent),transparent 70%),var(--bg);color:var(--text);font:400 15.5px/1.55 Figtree,sans-serif}
+.fl-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px 24px;padding:26px 24px 18px}
+.lab{font:500 12px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lab b{color:var(--bile)}
+.fl-top h1{font:700 60px/.95 Fraunces,serif;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;margin:8px 0 10px;letter-spacing:-.01em}
+.fl-top h1 em{font-style:italic;color:var(--flesh);font-weight:500}
+.fl-top p{margin:0;max-width:46ch;color:var(--muted)}
+.fl-top p b{color:var(--text)}
+.fl-cd{display:flex;gap:8px;flex-wrap:wrap}
+.fl-cd div{display:grid;place-items:center;width:66px;height:62px;background:var(--cell);border:1.5px solid var(--line);border-radius:58% 42% 55% 45%/48% 60% 40% 52%;animation:flmorph 9s ease-in-out infinite alternate}
+.fl-cd div:nth-child(2){animation-delay:-3s}.fl-cd div:nth-child(3){animation-delay:-6s}
+.fl-cd b{font:700 24px/1 Fraunces,serif;font-variant-numeric:tabular-nums}
+.fl-cd small{font-size:11px;color:var(--muted);margin-top:-8px}
+@keyframes flmorph{50%{border-radius:42% 58% 45% 55%/58% 42% 60% 40%}100%{border-radius:50% 50% 62% 38%/40% 55% 45% 60%}}
+.fl-body{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:6px 24px 26px}
+.vat{position:relative}
+.tube{position:relative;height:420px;border:2px solid var(--line);border-radius:90px 90px 40px 40px;background:var(--glass);overflow:hidden}
+.tube::after{content:"";position:absolute;left:14%;top:6%;width:10%;height:70%;border-radius:20px;background:linear-gradient(rgba(255,255,255,.22),transparent);pointer-events:none}
+.liq{position:absolute;left:0;right:0;bottom:0;height:calc(var(--p,0)*100%);background:linear-gradient(var(--flesh),var(--flesh2));transition:height 1.2s cubic-bezier(.3,1.4,.4,1)}
+.liq svg{position:absolute;left:0;top:-13px;width:200%;height:14px;animation:flwave 3s linear infinite}
+.liq svg path{fill:var(--flesh)}
+@keyframes flwave{to{transform:translateX(-50%)}}
+.bub{position:absolute;bottom:0;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);animation:flbub 4s ease-in infinite;opacity:0}
+@keyframes flbub{0%{transform:translateY(0);opacity:0}15%{opacity:.8}100%{transform:translateY(calc(var(--p,0)*-400px));opacity:0}}
+.vat[data-boil="1"] .bub{animation-duration:1.1s}
+.ticks{position:absolute;inset:0;pointer-events:none}
+.ticks span{position:absolute;left:0;right:0;border-top:1px dashed color-mix(in srgb,var(--text) 35%,transparent);font-size:11px;padding-left:6px;color:var(--text);opacity:.75}
+.vat-read{margin-top:10px;text-align:center}
+.vat-read b{display:block;font:700 30px/1.1 Fraunces,serif}
+.vat-read span{font-size:13.5px;color:var(--muted)}
+.fl-sec{margin-bottom:22px}
+.fl-sec h2{font:600 24px/1.2 Fraunces,serif;font-variation-settings:"SOFT" 100,"WONK" 1;margin:0 0 4px}
+.fl-sec>p{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+.nutri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.nutri div{background:var(--cell);border:1.5px solid var(--line);padding:16px 18px;border-radius:30px 18px 34px 14px}
+.nutri b{display:block;font:700 26px/1.1 Fraunces,serif;color:var(--flesh)}
+.nutri span{font-size:13.5px;color:var(--muted)}
+.cells{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cellb{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px 14px;background:var(--cell);border:1.5px solid var(--line);border-radius:46% 54% 50% 50%/40% 40% 60% 60%;color:inherit;font:inherit;text-align:center;cursor:pointer;min-height:180px;justify-content:center;transition:border-color .3s}
+.cellb:hover{border-color:var(--flesh2)}
+.cellb .nuc{width:34px;height:34px;border-radius:50%;border:2px dashed var(--muted);transition:all .5s}
+.cellb .nm{font-weight:700;font-size:14px;line-height:1.25}
+.cellb .cs{font:700 20px Fraunces,serif;color:var(--flesh)}
+.cellb .st{font-size:12px;color:var(--muted)}
+.cellb .st::after{content:"dormente"}
+.cellb[data-on="1"]{border-color:var(--flesh)}
+.cellb[data-on="1"] .nuc{border:0;background:radial-gradient(circle at 35% 35%,var(--bile),var(--flesh) 70%);box-shadow:0 0 18px color-mix(in srgb,var(--flesh) 60%,transparent)}
+.cellb[data-on="1"] .st{color:var(--bile);font-weight:700}
+.cellb[data-on="1"] .st::after{content:"cultivada"}
+.cellb[data-on="1"][data-just="1"]{animation:flpop .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes flpop{0%{transform:scale(.9)}50%{transform:scale(1.07,.95)}100%{transform:none}}
+.colonies{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.col{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center;padding:10px 12px;background:var(--cell);border:1.5px solid var(--line);border-radius:18px}
+.dish{position:relative;width:58px;height:58px;border-radius:50%;border:2px solid var(--line);background:var(--glass)}
+.dish i{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--flesh)}
+.col b{display:block;font:600 17px Fraunces,serif}
+.col span{font-size:13.5px;color:var(--muted)}
+@container rc (max-width:640px){
+  .fl-top{padding:22px 18px 14px}
+  .fl-top h1{font-size:44px}
+  .fl-body{grid-template-columns:1fr;padding:4px 18px 22px}
+  .tube{height:92px;border-radius:46px}
+  .tube::after{left:6%;top:14%;width:70%;height:12%}
+  .liq{top:0;height:auto;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--flesh2),var(--flesh));transition:width 1.2s cubic-bezier(.3,1.4,.4,1)}
+  .liq svg{display:none}
+  .ticks span{top:0!important;bottom:0;left:var(--x);right:auto;border-top:0;border-left:1px dashed color-mix(in srgb,var(--text) 35%,transparent);padding:4px 0 0 4px}
+  @keyframes flbub{0%{transform:translateY(0);opacity:0}20%{opacity:.8}100%{transform:translateY(-70px);opacity:0}}
+  .nutri{grid-template-columns:1fr}
+  .cells{grid-template-columns:1fr 1fr}
+  .cellb{min-height:160px}
+  .colonies{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  // Colônias pontuadas na placa de Petri: um ponto por estrela de rendimento.
+  const DOTS = [[30, 18], [16, 50], [52, 46], [36, 68], [60, 22]];
+  PR.init({
+    n: 3,
+    nome: 'Tanque de Cultura',
+    fonte: 'material do mundo',
+    frase: 'O guia é um <b>tanque de cultura no laboratório do Helminth</b>: a Moonflesh é matéria viva que sobe no vidro, cada compra é uma célula que você cultiva e cada missão é uma colônia de Infestados.',
+    paletas: {
+      dark: { nome: 'Bioluminescência', sub: 'Escuro · o tanque aceso no escuro', cores: [['Fundo', '#120b12'], ['Membrana', '#1d121b'], ['Veia', '#3e2638'], ['Texto', '#f4e7ef'], ['Moonflesh', '#ff6f9a'], ['Bile', '#c9e35c'], ['Plasma', '#c23a6a']] },
+      light: { nome: 'Lâmina de microscópio', sub: 'Claro · a amostra sob a luz', cores: [['Lâmina', '#f7eff1'], ['Membrana', '#fffafb'], ['Veia', '#e4cbd5'], ['Texto', '#2a1520'], ['Moonflesh', '#b0204f'], ['Bile', '#506d00'], ['Plasma', '#e86f96']] },
+    },
+    fontes: [
+      { nome: 'Fraunces (Soft + Wonk)', uso: 'títulos e números, macios e orgânicos', css: 'Fraunces', amostra: 'Carne da Lua 1.625' },
+      { nome: 'Figtree', uso: 'texto corrido e rótulos', css: 'Figtree', amostra: 'Os maggots não dropam.' },
+    ],
+    assinatura: 'O <b>tanque enche</b>: cada compra marcada faz a Moonflesh subir no vidro com uma onda que balança, e as bolhas aceleram por um instante. A célula comprada <b>germina</b> (o núcleo acende e ela pulsa). Tudo que é “recipiente” tem bordas que respiram devagar.',
+    experimente: 'marque e desmarque o Legendary Core e olhe o nível do tanque.',
+    pecas: [
+      ['Topo', 'Rótulo de amostra “Cultura: Taubound · Eris”; a contagem regressiva em três bolhas.'],
+      ['Progresso', 'O tanque de vidro com as marcas de cada compra; no celular vira um tubo deitado.'],
+      ['Loja / checklist', 'Células: dormente → cultivada; o núcleo acende.'],
+      ['Missões', 'Placas de Petri: o número de colônias é o rendimento de Moonflesh.'],
+      ['Resumo', '“Nutrientes”: bolhas com os números que importam.'],
+      ['Armadilhas', '“Contaminação”: avisos em bile esverdeada.'],
+      ['Calculadora', '“Tempo de incubação”: dias até o tanque encher.'],
+    ],
+    render(root, size) {
+      const ms = ['Zabala', 'Nimus', 'Xini', 'Kala-azar'].map(PR.mission);
+      let acc = 0;
+      const ticks = PR.p1().map(i => { acc += i.cost; const p = acc / PR.goal(); return `<span style="bottom:${p * 100}%;--x:${p * 100}%">${PR.fmt(acc)}</span>`; }).join('');
+      const bubs = Array.from({ length: 7 }, (_, i) => `<span class="bub" style="left:${10 + i * 12}%;width:${6 + (i % 3) * 4}px;height:${6 + (i % 3) * 4}px;animation-delay:${-i * .6}s"></span>`).join('');
+      root.innerHTML = `
+      <div class="fl-top"><div><div class="lab">Cultura <b>Taubound</b> · amostra de Eris · lote único</div>
+        <h1>Carne <em>da</em> Lua</h1>
+        <p>Colete <b>Moonflesh</b> dos Infestados de Eris e troque na Praghasa antes que ela parta para Tau. A cultura não volta depois de <b>17/11</b>.</p></div>
+        <div><div class="lab" style="margin-bottom:8px">A cultura morre em</div>
+        <div class="fl-cd"><div><b data-c="d"></b><small>dias</small></div><div><b data-c="h"></b><small>horas</small></div><div><b data-c="m"></b><small>min</small></div></div></div></div>
+      <div class="fl-body">
+        <div class="vat"><div class="tube"><div class="liq"><svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0 7 Q12.5 0 25 7 T50 7 T75 7 T100 7 T125 7 T150 7 T175 7 T200 7 V14 H0Z"/></svg></div>${bubs}<div class="ticks">${ticks}</div></div>
+          <div class="vat-read"><b data-v></b><span>de ${PR.fmt(PR.goal())} Moonflesh da meta mínima</span></div></div>
+        <div>
+          <section class="fl-sec"><h2>Nutrientes</h2><p>O que alimenta o tanque.</p>
+            <div class="nutri"><div><b>2 / 3</b><span>por drop, Normal / Steel Path</span></div><div><b>50 / 75</b><span>por Alert concluído</span></div><div><b>~6–9</b><span>por minuto em Survival</span></div></div></section>
+          <section class="fl-sec"><h2>Células para cultivar</h2><p>Prioridade 1: progresso real. Toque para marcar o que já comprou.</p>
+            <div class="cells">${PR.p1().map(i => `<button class="cellb" type="button" data-item="${i.id}"><span class="nuc"></span>
+              <span class="nm">${i.name}</span><span class="cs">${i.cost}</span><span class="st"></span></button>`).join('')}</div></section>
+          <section class="fl-sec"><h2>Colônias em Eris</h2><p>Mais pontos na placa, mais Moonflesh por minuto.</p>
+            <div class="colonies">${ms.map(m => `<div class="col"><span class="dish" aria-label="${m.rating} de 5">${DOTS.slice(0, m.rating).map(([x, y]) => `<i style="left:${x}%;top:${y}%"></i>`).join('')}</span>
+              <div><b>${m.node}</b><span>${m.type} · ${m.when}</span></div></div>`).join('')}</div></section>
+        </div>
+      </div>`;
+    },
+    update(root, just) {
+      const vat = root.querySelector('.vat');
+      vat.style.setProperty('--p', PR.pct());
+      root.querySelector('[data-v]').textContent = PR.fmt(PR.got());
+      if (just) { vat.dataset.boil = '1'; clearTimeout(vat._b); vat._b = setTimeout(() => vat.dataset.boil = '0', 1600); }
+    },
+    tick(root, c) {
+      root.querySelector('[data-c=d]').textContent = c.d;
+      root.querySelector('[data-c=h]').textContent = PR.pad(c.h);
+      root.querySelector('[data-c=m]').textContent = PR.pad(c.m);
+    },
+  });
+})();
+</script>
+</body>
+</html>

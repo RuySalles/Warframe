@@ -13,15 +13,16 @@
   const owned = store.get('owned', {});
   const shopEl = $('shop');
   const TIER_TAG = { 1: 't-sent', 2: 't-gold', 3: 't-void', 4: 't-mut' };
+  const FACETS = 20; // lascas da barra de progresso
   const sum = (items) => items.reduce((total, item) => total + item.cost, 0);
 
+  // Cada item é uma lasca: marcada = cristalizada (o texto do estado vem do CSS)
   function itemHtml(item) {
     const note = item.note ? `<small>${escapeHtml(item.note)}</small>` : '';
     return `
       <div class="item ${owned[item.id] ? 'on' : ''}" data-id="${item.id}" role="checkbox" tabindex="0" aria-checked="${!!owned[item.id]}">
-        <div class="box"></div>
         <div class="nm">${escapeHtml(item.name)}${note}</div>
-        <div class="cost"><span class="mf"></span>${item.cost}</div>
+        <div class="foot"><span class="cost">${item.cost}<small>MF</small></span><span class="st"></span></div>
       </div>`;
   }
 
@@ -29,8 +30,8 @@
     shopEl.innerHTML = shop
       .map((group) => `
         <div class="group">
-          <h3><span>${escapeHtml(group.title)}</span><span class="tag ${TIER_TAG[group.tier]}">${sum(group.items)} no total</span></h3>
-          <div class="items">${group.items.map(itemHtml).join('')}</div>
+          <h3><span>${escapeHtml(group.title)}</span><span class="tag ${TIER_TAG[group.tier]}">${fmt(sum(group.items))} no total</span></h3>
+          <div class="items${group.tier === 1 ? ' big' : ''}">${group.items.map(itemHtml).join('')}</div>
         </div>`)
       .join('');
   }
@@ -40,9 +41,12 @@
     owned[id] = !owned[id];
     el.classList.toggle('on', owned[id]);
     el.setAttribute('aria-checked', owned[id]);
+    if (owned[id]) window.TB.flash(el);
     store.set('owned', owned);
     update();
   }
+
+  $('shopFac').innerHTML = '<i></i>'.repeat(FACETS);
 
   renderShop();
   shopEl.addEventListener('click', (e) => {
@@ -96,6 +100,19 @@
     update();
   });
 
+  // Selo do Melee Influence na seção do Xaku: atalho para a mesma linha da lista de arcanos
+  const TRIB_ARCANE = 'Melee Influence';
+  const trib = $('miTrib');
+  const tribRow = () => arcEl.querySelectorAll('.arc')[arcanes.findIndex((a) => a.name === TRIB_ARCANE)];
+  if (trib && tribRow()) {
+    trib.addEventListener('click', () => {
+      const box = tribRow().querySelector('input');
+      box.checked = !box.checked;
+      box.dispatchEvent(new Event('change', { bubbles: true }));
+      if (box.checked) window.TB.flash(trib);
+    });
+  }
+
   const arcaneCost = () =>
     arcanes.reduce((total, arc) => {
       const s = arcaneState[arc.name];
@@ -138,12 +155,14 @@
     const missing = sum(allItems.filter((i) => !owned[i.id]));
     const pct = Math.round(((total - missing) / total) * 100);
     $('shopPct').textContent = pct + '%';
-    $('shopBar').style.width = pct + '%';
+    const lit = Math.round((pct / 100) * FACETS);
+    $('shopFac').querySelectorAll('i').forEach((f, i) => f.classList.toggle('on', i < lit));
     $('shopLeft').textContent = fmt(missing);
 
     // Arcanos
     const arcTotal = arcaneCost();
     $('arcTotal').textContent = fmt(arcTotal);
+    if (trib) trib.setAttribute('aria-pressed', !!(arcaneState[TRIB_ARCANE] && arcaneState[TRIB_ARCANE].on));
 
     // Meta = itens não marcados até a prioridade escolhida (+ arcanos, se marcado)
     const maxTier = Number($('cTier').value);

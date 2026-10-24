@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 6 · Sinal Interceptado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;700&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+:root{--bg:#0b0a0f;--panel:#15121a;--panel2:#1d1822;--line:#33293a;--line2:#4d3e55;--text:#f1e8ee;--muted:#b3a2b0;--flesh:#ff6f9a;--void:#5fe0d0;--crim:#e0484f;--tau:#ffb37a;--on:#1a0d0b;--gold:#dcb75c;--gold2:#f6dc93;--og:#0d0c0a;--ogline:#3d3424;--hero:#06080c}
+:root[data-theme="light"]{--bg:#f4efe9;--panel:#fffbf8;--panel2:#f6eee8;--line:#dccdc6;--line2:#b9a39e;--text:#22171d;--muted:#66525c;--flesh:#b0204f;--void:#0b6f65;--crim:#a3262f;--tau:#b4481c;--on:#fff8f2;--gold:#86620f;--gold2:#a77c1a;--og:#f7f2e8;--ogline:#dccfb2;--hero:#2a1a22}
+.rc{background:var(--bg);color:var(--text);font:400 15.5px/1.55 Figtree,sans-serif}
+.disp{font-family:Fraunces,serif;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144}
+.sig{font:700 11px Figtree,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.sig b{color:var(--flesh)}
+
+/* TOPO: arte + esporos + contador (da prancha 0), título que se decifra (da 2) */
+.hx{position:relative;min-height:540px;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:radial-gradient(500px 340px at 75% 30%,rgba(224,72,79,.45),transparent 70%),radial-gradient(420px 300px at 20% 20%,rgba(95,224,208,.25),transparent 70%),var(--hero)}
+.hx-bg{position:absolute;inset:0;z-index:-2}
+.hx-bg img{width:100%;height:100%;object-fit:cover;opacity:.7}
+.hx::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 10%,color-mix(in srgb,var(--bg) 88%,transparent) 50%,var(--bg) 72%)}
+.hx canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hx-in{padding:0 26px 30px;width:100%}
+.hx h1{font-size:64px;line-height:1;font-weight:700;margin:12px 0 12px;letter-spacing:-.01em}
+.hx h1 em{font-style:italic;font-weight:500;color:var(--flesh)}
+.hx p{max-width:56ch;margin:0;color:var(--muted);font-size:17px}
+.hx p b{color:var(--text)}
+.cdx{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.cdx div{min-width:92px;padding:12px 16px 10px;text-align:center;background:linear-gradient(var(--crim),var(--crim)) top/100% 3px no-repeat,color-mix(in srgb,var(--panel) 88%,transparent)}
+.cdx div:nth-child(1){clip-path:polygon(0 6%,100% 0,96% 100%,4% 94%)}
+.cdx div:nth-child(2){clip-path:polygon(5% 0,100% 8%,100% 92%,0 100%)}
+.cdx div:nth-child(3){clip-path:polygon(0 0,95% 6%,100% 100%,6% 94%)}
+.cdx div:nth-child(4){clip-path:polygon(3% 8%,100% 0,94% 96%,0 100%)}
+.cdx b{display:block;font-size:34px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.cdx small{font:700 10.5px Figtree,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cd-note{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.cd-note b{color:var(--text)}
+
+.sec{padding:26px 26px}
+.sec+.sec{border-top:1px solid var(--line)}
+.sec h2{font-size:30px;line-height:1.1;font-weight:600;margin:6px 0 6px}
+.sec .lead{margin:0 0 16px;color:var(--muted);max-width:62ch}
+
+/* RESUMO em lascas */
+.lasc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.lasc div{background:var(--panel);padding:14px 18px 14px 20px;border-left:3px solid var(--flesh);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.lasc b{display:block;font-size:28px;line-height:1.1;font-weight:700;color:var(--flesh)}
+.lasc span{font-size:13.5px;color:var(--muted)}
+
+/* MAPA de Eris (da prancha 1) com colônias de esporos (da 3) */
+.mapx{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(250px,1fr);border:1px solid var(--line);background:var(--panel)}
+.mapx svg{display:block;width:100%;height:auto;background:radial-gradient(60% 60% at 52% 50%,color-mix(in srgb,var(--flesh) 10%,transparent),transparent 70%)}
+.orb{fill:none;stroke:var(--line2);stroke-width:1.2;stroke-dasharray:2 7}
+.nd{cursor:pointer;outline:none}
+.nd .hit{fill:transparent}
+.nd .dot{fill:var(--bg);stroke:var(--flesh);stroke-width:2.2;transition:fill .2s}
+.nd .sp{fill:var(--flesh);transform-box:fill-box;transform-origin:center;animation:spore 2.6s ease-in-out infinite}
+.nd text{fill:var(--text);font-family:Fraunces,serif;font-weight:600}
+.nd[aria-pressed="true"] .dot{fill:var(--flesh)}
+.nd[aria-pressed="true"] .sp{fill:var(--void)}
+.nd:focus-visible .dot{stroke-width:5}
+.nd.al .dot{stroke:var(--tau)}
+.nd.al .sp{fill:var(--tau)}
+@keyframes spore{0%,100%{transform:scale(.7);opacity:.55}50%{transform:scale(1.25);opacity:1}}
+.pg{fill:var(--crim)}
+.pgl{fill:var(--crim);font:700 12px Figtree,sans-serif;letter-spacing:.18em}
+.me{fill:var(--void)}
+.mel{fill:var(--void);font:700 11px Figtree,sans-serif;letter-spacing:.18em}
+.route{fill:none;stroke:var(--void);stroke-width:2.2;stroke-linecap:round}
+.route.draw{stroke-dasharray:100;animation:rdraw .7s ease-out forwards}
+.route.flow{stroke-dasharray:2 6;animation:rflow 1.2s linear infinite}
+@keyframes rdraw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes rflow{to{stroke-dashoffset:-8}}
+.mp{border-left:1px solid var(--line);padding:18px}
+.mp h3{font-size:28px;line-height:1.1;font-weight:700;margin:4px 0 2px}
+.mp .ty{color:var(--void);font-weight:500;margin-bottom:12px}
+.mp .yd{display:flex;gap:6px;margin:6px 0 14px}
+.mp .yd i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line2)}
+.mp .yd i.on{background:var(--flesh);border-color:var(--flesh)}
+.mp dl{margin:0;display:grid;gap:10px}
+.mp dd{margin:0}
+.mp dt{margin-bottom:2px}
+
+/* LOJA em lascas que cristalizam (da prancha 2) */
+.mos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.sh{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-height:170px;padding:22px 18px 18px;background:var(--panel2);color:var(--text);border:0;font:inherit;text-align:left;cursor:pointer;overflow:hidden;transition:transform .3s}
+.sh:nth-child(1){clip-path:polygon(0 7%,100% 0,95% 100%,3% 93%)}
+.sh:nth-child(2){clip-path:polygon(5% 0,100% 6%,100% 100%,0 94%)}
+.sh:nth-child(3){clip-path:polygon(0 0,96% 8%,100% 92%,7% 100%)}
+.sh:nth-child(4){clip-path:polygon(4% 5%,100% 0,93% 95%,0 100%)}
+.sh:hover{transform:translateY(-2px)}
+.sh:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--void)}
+.sh .nm{font-weight:700;font-size:15.5px;line-height:1.3}
+.sh .cs{font-size:32px;line-height:1;font-weight:700}
+.sh .cs small{font:700 10px Figtree,sans-serif;letter-spacing:.2em;margin-left:5px}
+.sh .st{font:700 10.5px Figtree,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--flesh)}
+.sh .st::after{content:"Sinal fraco"}
+.sh[data-on="1"]{background:linear-gradient(135deg,var(--crim),var(--tau));color:var(--on)}
+.sh[data-on="1"] .st{color:var(--on)}
+.sh[data-on="1"] .st::after{content:"Cristalizado"}
+.sh::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.sh[data-on="1"][data-just="1"]{animation:crys .8s cubic-bezier(.2,.9,.3,1.2)}
+.sh[data-on="1"][data-just="1"]::after{animation:sweep .9s ease-out}
+@keyframes crys{0%{transform:scale(.94) rotate(-2.5deg)}60%{transform:scale(1.03) rotate(.6deg)}100%{transform:none}}
+@keyframes sweep{to{transform:translateX(120%)}}
+.fac{display:flex;gap:3px;margin:16px 0 8px}
+.fac i{flex:1;height:14px;background:var(--line);transform:skewX(-28deg);transition:background .4s}
+.fac i.on{background:var(--crim)}
+.fac i.on:nth-child(odd){background:var(--tau)}
+.left{font-size:14px;color:var(--muted);margin:0}
+.left b{color:var(--text)}
+
+/* XAKU em modo Orokin (da prancha 5) */
+.ok{background:var(--og);border-top:1px solid var(--ogline)}
+.ok .sig{color:var(--gold)}
+.okg{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:30px;align-items:center}
+.arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 6px 6px;padding:7px;background:linear-gradient(180deg,var(--gold2),var(--gold) 60%,var(--ogline));overflow:hidden}
+.arch img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:999px 999px 2px 2px}
+.arch::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,240,200,.55) 48%,transparent 66%);transform:translateX(-120%);pointer-events:none}
+.arch.shine::after{animation:sheen 1.1s ease-out}
+@keyframes sheen{to{transform:translateX(120%)}}
+.thumbs{display:flex;gap:8px;margin-top:10px;justify-content:center}
+.thumbs button{width:60px;height:76px;padding:2px;border:1px solid var(--ogline);border-radius:999px 999px 4px 4px;background:var(--gold);cursor:pointer;opacity:.55;transition:opacity .2s}
+.thumbs button[aria-pressed="true"],.thumbs button:hover{opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;border-radius:999px 999px 2px 2px;display:block}
+.ok h2{font:400 46px/1.05 Italiana,serif;letter-spacing:.08em;text-transform:uppercase;margin:6px 0 4px}
+.orn{display:flex;align-items:center;gap:10px;color:var(--gold);margin:10px 0 16px}
+.orn::before,.orn::after{content:"";width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn::after{transform:scaleX(-1)}
+.orn i{width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg)}
+.orn i:nth-child(2){width:12px;height:12px;background:var(--gold)}
+.bld{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:18px}
+.bld div{text-align:center;border-left:1px solid var(--ogline);padding:2px 6px}
+.bld div:first-child{border-left:0}
+.bld b{display:block;font:400 40px/1.1 Italiana,serif;color:var(--gold)}
+.bld span{font-size:13px;color:var(--muted)}
+.trib{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;min-height:58px;padding:10px 14px;background:transparent;border:1px solid var(--ogline);color:inherit;font:inherit;text-align:left;cursor:pointer;overflow:hidden}
+.trib:hover{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.glyph{width:26px;height:26px}
+.glyph circle,.glyph path{fill:none;stroke:var(--gold);stroke-width:1.3}
+.glyph .fill{fill:var(--gold);stroke:none;transform:scale(0);transform-origin:13px 13px;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.trib .nm{font:400 22px/1.2 Italiana,serif}
+.trib .nt{display:block;font-size:13.5px;color:var(--muted)}
+.trib .cs{font:700 13px Figtree,sans-serif;letter-spacing:.12em;color:var(--flesh);white-space:nowrap}
+.trib[data-on="1"] .glyph .fill{transform:scale(1)}
+.trib[data-on="1"] .nm{color:var(--gold)}
+.trib[data-on="1"] .nt::before{content:"Tributo pago · ";color:var(--gold);font-weight:700}
+.trib::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--gold2) 45%,transparent) 48%,transparent 66%);transform:translateX(-110%);pointer-events:none}
+.trib[data-on="1"][data-just="1"]::after{animation:sheen 1.1s ease-out}
+.okn{margin:14px 0 0;color:var(--muted);font-size:14.5px}
+.okn b{color:var(--text)}
+
+@container rc (max-width:640px){
+  .hx{min-height:600px}
+  .hx::before{background:linear-gradient(180deg,transparent 0%,color-mix(in srgb,var(--bg) 90%,transparent) 30%,var(--bg) 44%)}
+  .hx-in{padding:0 18px 24px}
+  .hx h1{font-size:44px}
+  .hx p{font-size:16px}
+  .cdx{gap:8px}
+  .cdx div{min-width:0;flex:1 1 calc(50% - 8px);padding:10px 8px 8px}
+  .cdx b{font-size:30px}
+  .sec{padding:22px 18px}
+  .sec h2{font-size:26px}
+  .lasc{grid-template-columns:1fr}
+  .mapx{grid-template-columns:1fr}
+  .mp{border-left:0;border-top:1px solid var(--line)}
+  .mos{grid-template-columns:1fr 1fr}
+  .sh{min-height:150px;padding:18px 14px 16px}
+  .sh .cs{font-size:26px}
+  .okg{grid-template-columns:1fr;gap:18px}
+  .okg>div:first-child{width:72%;margin:0 auto}
+  .ok h2{font-size:36px;text-align:center}
+  .ok .sig{display:block;text-align:center}
+  .orn{justify-content:center}
+  .bld{grid-template-columns:1fr 1fr;row-gap:12px}
+  .bld div:nth-child(3){border-left:0}
+  .bld b{font-size:34px}
+}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  const HERO = 'https://static.allthings.how/wp-content/uploads/2026/10/warframe-operation-taubound-moonflesh-farming-and-reward-list-fe321c.png';
+  const XAKU = ['../../img/xaku1.jpg', '../../img/xaku2.jpg', '../../img/xaku3.jpg'];
+  const POS = { 'Zabala': [440, 118], 'Nimus': [170, 112], 'Xini': [486, 258], 'Kala-azar': [356, 334], 'Akkad': [178, 290], 'Oestrus': [292, 62], 'Locus Alerts': [528, 172] };
+  const ME = [48, 52], PG = [72, 354];
+  const SHORT = { 'Locus Alerts': 'Alerts' };
+  const FACET = 125;
+  const GLYPHS = '◇◆△▽⟁⧫⬡⬢⌬⏃⏚⍜';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Sinal que se decifra (prancha 2) ---
+  function decode(el) {
+    const final = el.dataset.text; let f = 0;
+    if (reduce) { el.textContent = final; return; }
+    clearInterval(el._t);
+    el._t = setInterval(() => {
+      f++;
+      el.textContent = [...final].map((c, i) => (i < f / 2 || c === ' ') ? c : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]).join('');
+      if (f / 2 >= final.length) { clearInterval(el._t); el.textContent = final; }
+    }, 40);
+  }
+  const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { decode(e.target); seen.unobserve(e.target); } }), { threshold: .6 });
+
+  // --- Esporos do topo: as partículas da prancha 0, agora macias e oscilando como esporos ---
+  function spores(canvas) {
+    const ctx = canvas.getContext('2d');
+    let list = [], W = 0, H = 0;
+    const css = n => getComputedStyle(canvas).getPropertyValue(n).trim();
+    function size() {
+      const r = canvas.getBoundingClientRect(), d = devicePixelRatio || 1;
+      W = r.width; H = r.height; canvas.width = W * d; canvas.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+      list = Array.from({ length: Math.round(Math.min(80, W / 12)) }, () => ({
+        x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.6 + .8, v: Math.random() * .3 + .08,
+        ph: Math.random() * 6.28, c: Math.random() < .55 ? '--flesh' : '--void',
+      }));
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      const col = { '--flesh': css('--flesh'), '--void': css('--void') };
+      list.forEach(p => {
+        p.y -= p.v; p.x += Math.sin(t / 1400 + p.ph) * .25;
+        if (p.y < -8) { p.y = H + 8; p.x = Math.random() * W; }
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+        g.addColorStop(0, col[p.c]); g.addColorStop(.35, col[p.c] + 'aa'); g.addColorStop(1, col[p.c] + '00');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 3, 0, 6.29); ctx.fill();
+      });
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    size(); new ResizeObserver(size).observe(canvas); requestAnimationFrame(draw);
+  }
+
+  // --- Mapa de Eris (prancha 1) ---
+  function path(to) {
+    const [x1, y1] = ME, [x2, y2] = to;
+    return `M${x1},${y1} Q${(x1 + x2) / 2 - 40},${Math.min(y1, y2) + 140} ${x2},${y2}`;
+  }
+  function select(root, name, draw) {
+    const m = PR.mission(name);
+    root.querySelectorAll('.nd').forEach(n => n.setAttribute('aria-pressed', n.dataset.node === name));
+    const r = root.querySelector('.route');
+    r.setAttribute('d', path(POS[name])); r.setAttribute('pathLength', 100);
+    r.classList.remove('draw', 'flow');
+    if (draw) { void r.getBBox(); r.classList.add('draw'); setTimeout(() => { r.classList.remove('draw'); r.classList.add('flow'); }, 720); }
+    else r.classList.add('flow');
+    const p = root.querySelector('.mp');
+    p.querySelector('h3').textContent = m.node;
+    p.querySelector('.ty').textContent = m.type;
+    p.querySelector('.yd').innerHTML = [1, 2, 3, 4, 5].map(i => `<i class="${i <= m.rating ? 'on' : ''}"></i>`).join('');
+    p.querySelector('[data-f=bonus]').textContent = m.bonus;
+    p.querySelector('[data-f=when]').textContent = m.when;
+  }
+
+  PR.init({
+    n: 6,
+    nome: 'Sinal Interceptado',
+    fonte: 'mistura das pranchas 0, 1, 2, 3 e 5',
+    frase: 'O guia é o <b>Orbiter interceptando a Praghasa sobre Eris</b>: a arte do evento com esporos no ar abre a página, cada título chega como sinal Sentient sendo decifrado, o mapa do sistema mostra onde a Infestação brota, as compras cristalizam em lascas e, quando o assunto é o seu Xaku, a página vira ouro Orokin.',
+    paletas: {
+      dark: { nome: 'Eris infestada', sub: 'Escuro · a noite em Eris com o sinal no ar', cores: [['Fundo', '#0b0a0f'], ['Membrana', '#15121a'], ['Veia', '#33293a'], ['Texto', '#f1e8ee'], ['Moonflesh', '#ff6f9a'], ['Void', '#5fe0d0'], ['Sentient', '#e0484f'], ['Brilho de Tau', '#ffb37a'], ['Ouro Orokin', '#dcb75c']] },
+      light: { nome: 'Osso de Tau', sub: 'Claro · a carapaça Sentient à luz', cores: [['Osso', '#f4efe9'], ['Membrana', '#fffbf8'], ['Veia', '#dccdc6'], ['Texto', '#22171d'], ['Moonflesh', '#b0204f'], ['Void', '#0b6f65'], ['Sentient', '#a3262f'], ['Brasa', '#b4481c'], ['Ouro velho', '#86620f']] },
+    },
+    fontes: [
+      { nome: 'Fraunces (Soft + Wonk)', uso: 'títulos que se decifram, números, nomes de missão', css: 'Fraunces', amostra: 'Operação Taubound 375' },
+      { nome: 'Figtree', uso: 'texto, rótulos espaçados', css: 'Figtree', amostra: 'Squad público rende mais.' },
+      { nome: 'Italiana', uso: 'só na seção do Xaku (modo Orokin)', css: 'Italiana', amostra: 'XAKU PRIME · 279%' },
+    ],
+    assinatura: 'A página <b>se decifra enquanto você rola</b>: cada título chega em glifos Sentient e se resolve quando entra na tela. Por baixo, <b>esporos de Moonflesh e Void</b> sobem pela arte do topo e pulsam em volta das missões no mapa. Marcar uma compra <b>cristaliza a lasca</b>; no Xaku, uma <b>folha de ouro</b> atravessa a foto e o tributo.',
+    experimente: 'role o recorte e veja os títulos se decifrarem; clique em Xini no mapa; marque a Azure; pague o Melee Influence; troque a foto do Xaku.',
+    pecas: [
+      ['Topo', 'Arte do evento com esporos subindo (partículas da 0), título decifrado em Fraunces e o contador da 0 em quatro lascas. No claro, a arte se dissolve no osso e o título fica escuro, sem a primeira tela igual nos dois temas.'],
+      ['Seções', 'Rótulo “Interceptado · FRAG 0N” e título que se decifra ao aparecer.'],
+      ['Resumo', 'Três lascas com os números principais.'],
+      ['Missões', 'O mapa de Eris da 1: nodes com colônias de esporos (uma por estrela), rota que se traça e painel de detalhes.'],
+      ['Loja / checklist', 'Mosaico de lascas irregulares da 2; marcada = cristalizada; 13 facetas de progresso.'],
+      ['Seu loadout', 'Modo Orokin da 5: arco dourado com as suas fotos, build em numerais Italiana e o Melee Influence como tributo selado a ouro.'],
+      ['Calculadora', '“Previsão de colheita”: dias até as facetas acenderem, em Fraunces.'],
+      ['Armadilhas', 'Fragmentos corrompidos: texto que treme em glifos e borda carmim.'],
+    ],
+    extra: `<section class="pr-crit">
+      <div><h2>De onde veio cada parte</h2>
+        <table><tbody>
+        ${[['0 · Site atual', 'topo com imagem, disposição do contador, partículas'], ['1 · Navegação', 'o mapa do sistema e a rota'], ['2 · Praghasa', 'título que se decifra, lascas sem padrão'], ['3 · Cultura', 'a fonte Fraunces e os esporos'], ['5 · Orokin', 'todos os efeitos, só na seção do Xaku'], ['4 · Fundição', 'nada (como você pediu)']].map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join('')}
+        </tbody></table></div>
+      <div><h2>Como as partes se juntam</h2>
+        <p>A <b>estrutura</b> é uma só: o Orbiter lendo um sinal. O mapa e o contador são a interface; a Infestação (esporos) e a Praghasa (lascas, glifos) são o que o sinal mostra. A única troca de linguagem é proposital: o Xaku é seu, então ganha a moldura Orokin.</p>
+        <p class="pr-hint">Três fontes no máximo, e Italiana só aparece numa seção. Os efeitos rodam uma vez (decifrar, cristalizar, folha de ouro); só os esporos ficam em movimento contínuo, e tudo para com “reduzir movimento”.</p></div>
+    </section>`,
+    render(root, size) {
+      const ph = size === 'phone';
+      const fs = ph ? 20 : 14, r = ph ? 9 : 7, sr = ph ? 3.4 : 2.6;
+      const nodes = PR.D.missions.map(m => {
+        const [x, y] = POS[m.node]; const al = m.node === 'Locus Alerts';
+        const sp = Array.from({ length: m.rating }, (_, k) => {
+          const a = k / m.rating * 6.283 + .5, R = r + 9;
+          return `<circle class="sp" cx="${(x + Math.cos(a) * R).toFixed(1)}" cy="${(y + Math.sin(a) * R).toFixed(1)}" r="${sr}" style="animation-delay:${-k * .45}s"/>`;
+        }).join('');
+        return `<g class="nd${al ? ' al' : ''}" data-node="${m.node}" role="button" tabindex="0" aria-label="${m.node}, ${m.type}, rendimento ${m.rating} de 5">
+          <circle class="hit" cx="${x}" cy="${y}" r="28"/>${sp}<circle class="dot" cx="${x}" cy="${y}" r="${r}"/>
+          <text x="${x}" y="${y - r - 14}" text-anchor="middle" font-size="${fs}">${SHORT[m.node] || m.node}</text></g>`;
+      }).join('');
+      root.innerHTML = `
+      <header class="hx">
+        <div class="hx-bg"><img src="${HERO}" alt="" onerror="this.remove()"></div><canvas aria-hidden="true"></canvas>
+        <div class="hx-in">
+          <div class="sig"><b>Interceptado</b> · Praghasa → Tenno · Eris</div>
+          <h1 class="disp" data-text="Operação Taubound">Operação Taubound</h1>
+          <p>Colete <b>Moonflesh</b> dos Infestados de Eris e troque com a Praghasa, a nave-mãe Sentient, antes que ela parta para Tau. Máximo resultado com pouco tempo.</p>
+          <div class="cdx"><div><b class="disp" data-c="d"></b><small>dias</small></div><div><b class="disp" data-c="h"></b><small>horas</small></div><div><b class="disp" data-c="m"></b><small>min</small></div><div><b class="disp" data-c="s"></b><small>seg</small></div></div>
+          <div class="cd-note">Termina em <b>17/11/2026 às 13:00</b> (Brasília). Moonflesh que sobrar não tem troca anunciada: gaste tudo.</div>
+        </div>
+      </header>
+      <section class="sec"><div class="sig"><b>FRAG 01</b> · Onde a Infestação brota</div>
+        <h2 class="disp" data-text="Mapa de Eris">Mapa de Eris</h2>
+        <p class="lead">Cada esporo em volta de uma missão é uma estrela de rendimento. Toque numa missão para traçar a rota.</p>
+        <div class="lasc"><div><b class="disp">2 / 3</b><span>por drop, Normal / Steel Path</span></div><div><b class="disp">50 / 75</b><span>por Alert concluído</span></div><div><b class="disp">~6–9</b><span>por minuto em Survival</span></div></div>
+        <div class="mapx"><svg viewBox="0 0 600 400" role="img" aria-label="Mapa de Eris com as missões">
+          <defs><radialGradient id="er-${size}" cx="38%" cy="32%"><stop offset="0" stop-color="var(--flesh)" stop-opacity=".55"/><stop offset=".55" stop-color="var(--crim)" stop-opacity=".35"/><stop offset="1" stop-color="var(--bg)"/></radialGradient></defs>
+          <ellipse class="orb" cx="320" cy="200" rx="150" ry="82" transform="rotate(-10 320 200)"/>
+          <ellipse class="orb" cx="320" cy="200" rx="250" ry="150" transform="rotate(-10 320 200)"/>
+          <circle cx="320" cy="200" r="46" fill="url(#er-${size})" stroke="var(--line2)"/>
+          <text x="320" y="206" text-anchor="middle" font-size="${ph ? 19 : 15}" style="fill:var(--text);font-family:Fraunces,serif;font-weight:700">Eris</text>
+          <path class="route"/>
+          <g><circle class="me" cx="${ME[0]}" cy="${ME[1]}" r="5"/><text class="mel" x="${ME[0] + 12}" y="${ME[1] + 4}" font-size="${ph ? 16 : 11}">VOCÊ</text></g>
+          <g><path class="pg" d="M${PG[0]} ${PG[1] - 13} L${PG[0] + 10} ${PG[1] - 2} L${PG[0] + 4} ${PG[1] + 12} L${PG[0] - 9} ${PG[1] + 3} Z"/>
+            <text class="pgl" x="${PG[0] + 18}" y="${PG[1] + 5}" font-size="${ph ? 17 : 12}">PRAGHASA</text></g>
+          ${nodes}
+        </svg>
+        <aside class="mp" aria-live="polite"><div class="sig">Detalhes da missão</div><h3 class="disp"></h3><div class="ty"></div>
+          <div class="sig">Rendimento</div><div class="yd"></div>
+          <dl><div><dt class="sig">Bônus</dt><dd data-f="bonus"></dd></div><div><dt class="sig">Quando usar</dt><dd data-f="when"></dd></div></dl></aside></div>
+      </section>
+      <section class="sec"><div class="sig"><b>FRAG 02</b> · O que a Praghasa oferece · prioridade 1</div>
+        <h2 class="disp" data-text="Lascas da Praghasa">Lascas da Praghasa</h2>
+        <p class="lead">Toque no que já comprou: a lasca cristaliza.</p>
+        <div class="mos">${PR.p1().map(i => `<button class="sh" type="button" data-item="${i.id}">
+          <span class="nm">${i.name}</span><span><span class="cs disp">${i.cost}<small>MF</small></span><br><span class="st"></span></span></button>`).join('')}</div>
+        <div class="fac">${Array.from({ length: PR.goal() / FACET }, () => '<i></i>').join('')}</div>
+        <p class="left"></p>
+      </section>
+      <section class="sec ok"><div class="okg">
+        <div><div class="arch"><img data-x src="${XAKU[0]}" alt="Seu Xaku Prime dourado"></div>
+          <div class="thumbs" role="group" aria-label="Fotos do Xaku">${XAKU.map((s, k) => `<button type="button" data-t="${k}" aria-pressed="${k === 0}" aria-label="Foto ${k + 1}"><img src="${s}" alt=""></button>`).join('')}</div></div>
+        <div><div class="sig">Seu loadout · Void e ouro</div><h2>Xaku Prime</h2><div class="orn"><i></i><i></i><i></i></div>
+          <div class="bld"><div><b>279%</b><span>Força</span></div><div><b>250%</b><span>Alcance</span></div><div><b>128%</b><span>Duração</span></div><div><b>45%</b><span>Eficiência</span></div></div>
+          <button class="trib" type="button" data-item="arc-mi"><svg class="glyph" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/><path d="M13 4 L22 13 L13 22 L4 13 Z"/><path class="fill" d="M13 8 L18 13 L13 18 L8 13 Z"/></svg>
+            <span><span class="nm">Melee Influence</span><span class="nt">Orthos Prime no R2 · faltam 15 cópias para o R5</span></span><span class="cs">120 MF</span></button>
+          <p class="okn"><b>Grasp of Lohk funciona contra Infestados:</b> sem arma para roubar, o Xaku ganha réplicas de Void da sua primária. Só os Eximus com Overguard não geram réplica.</p></div>
+      </div></section>`;
+
+      spores(root.querySelector('canvas'));
+      root.querySelectorAll('[data-text]').forEach(el => { if (el.tagName === 'H1') decode(el); else seen.observe(el); });
+      root.querySelectorAll('.nd').forEach(n => {
+        const go = () => select(root, n.dataset.node, true);
+        n.addEventListener('click', go);
+        n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+      });
+      select(root, 'Zabala', false);
+      const arch = root.querySelector('.arch');
+      root.querySelector('.thumbs').addEventListener('click', e => {
+        const b = e.target.closest('button'); if (!b) return;
+        root.querySelectorAll('.thumbs button').forEach(x => x.setAttribute('aria-pressed', x === b));
+        root.querySelector('[data-x]').src = XAKU[b.dataset.t];
+        arch.classList.remove('shine'); void arch.offsetWidth; arch.classList.add('shine');
+      });
+    },
+    update(root) {
+      const on = Math.round(PR.got() / FACET);
+      root.querySelectorAll('.fac i').forEach((f, i) => f.classList.toggle('on', i < on));
+      root.querySelector('.left').innerHTML = PR.left() ? `<b>${on} de ${PR.goal() / FACET}</b> facetas · faltam <b>${PR.fmt(PR.left())}</b> Moonflesh para a meta mínima` : '<b>Todas as facetas acesas.</b> A prioridade 1 está completa.';
+    },
+    tick(root, c) {
+      ['d', 'h', 'm', 's'].forEach(k => root.querySelector(`[data-c=${k}]`).textContent = k === 'd' ? c.d : PR.pad(c[k]));
+    },
+  });
+})();
+</script>
+</body>
+</html>

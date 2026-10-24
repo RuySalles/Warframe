@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prancha 2 · Transmissão da Praghasa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prancha.css">
+<style>
+:root{--bg:#0e0a0b;--bg2:#1a1112;--shard:#211615;--line:#3d2724;--text:#f0e5dc;--muted:#ad978c;--crim:#e0484f;--tau:#ffb37a;--bone:#dcc6a6;--on:#1a0d0b;--deep:#5a1c22}
+:root[data-theme="light"]{--bg:#f2ece4;--bg2:#e8ddd0;--shard:#fbf7f1;--line:#d8c6b3;--text:#23181a;--muted:#6a554e;--crim:#a3262f;--tau:#b4481c;--bone:#7a5f3a;--on:#fff8f2;--deep:#e5c9bd}
+.rc{background:var(--bg);color:var(--text);font:300 15px/1.6 Sora,sans-serif}
+.sx-hero{position:relative;padding:26px 22px 30px;min-height:330px;overflow:hidden;isolation:isolate}
+.sx-hero .k1,.sx-hero .k2,.sx-hero .k3{position:absolute;z-index:-1}
+.sx-hero .k1{right:-6%;top:-20%;width:58%;height:150%;background:linear-gradient(160deg,var(--crim),var(--deep) 70%);clip-path:polygon(38% 0,100% 0,100% 100%,0 72%);opacity:.9}
+.sx-hero .k2{right:30%;top:8%;width:22%;height:60%;background:linear-gradient(200deg,var(--tau),transparent);clip-path:polygon(50% 0,100% 40%,60% 100%,0 55%);opacity:.55}
+.sx-hero .k3{right:6%;bottom:-8%;width:30%;height:50%;border:1.5px solid var(--bone);clip-path:polygon(20% 0,100% 30%,80% 100%,0 70%);opacity:.5}
+.sig{font:400 10.5px Syncopate,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.sig b{color:var(--crim);font-weight:700}
+.sx-hero h1{font:700 clamp(40px,8cqi,76px)/1 Syncopate,sans-serif;letter-spacing:.06em;margin:14px 0 14px;text-transform:uppercase;max-width:9ch;overflow-wrap:anywhere}
+.sx-voice{max-width:40ch;font-size:17px;margin:0 0 22px;border-left:2px solid var(--crim);padding-left:14px}
+.sx-voice em{font-style:normal;color:var(--tau);font-weight:600}
+.sx-cd{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.sx-cd .sig{flex-basis:100%;margin-bottom:-6px}
+.sx-cd div b{display:block;font:700 34px/1 Syncopate,sans-serif;font-variant-numeric:tabular-nums}
+.sx-cd div small{font:400 10px Syncopate,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.frag{padding:22px;border-top:1px solid var(--line)}
+.frag>.sig{display:block;margin-bottom:14px}
+.sx-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sx-stat{background:var(--shard);padding:14px 16px 14px 20px;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%);border-left:3px solid var(--crim)}
+.sx-stat b{display:block;font:700 22px/1.1 Syncopate,sans-serif;margin-bottom:4px}
+.sx-stat span{font-size:13.5px;color:var(--muted)}
+.sx-mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.shard{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:168px;padding:22px 18px 18px;background:var(--shard);color:var(--text);border:0;font:inherit;text-align:left;cursor:pointer;overflow:hidden;transition:background .5s,color .5s,transform .3s}
+.shard:nth-child(1){clip-path:polygon(0 7%,100% 0,95% 100%,3% 93%)}
+.shard:nth-child(2){clip-path:polygon(5% 0,100% 6%,100% 100%,0 94%)}
+.shard:nth-child(3){clip-path:polygon(0 0,96% 8%,100% 92%,7% 100%)}
+.shard:nth-child(4){clip-path:polygon(4% 5%,100% 0,93% 95%,0 100%)}
+.shard:hover{transform:translateY(-2px)}
+.shard:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--tau)}
+.shard .ty{font:400 10px Syncopate,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.shard .nm{font-weight:600;font-size:16px;line-height:1.3}
+.shard .cs{font:700 30px/1 Syncopate,sans-serif}
+.shard .cs small{font:400 10px Syncopate,sans-serif;letter-spacing:.2em;margin-left:6px}
+.shard .st{font:400 10px Syncopate,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--crim)}
+.shard .st::after{content:"Não colhido"}
+.shard[data-on="1"]{background:linear-gradient(135deg,var(--crim),var(--tau));color:var(--on)}
+.shard[data-on="1"] .ty,.shard[data-on="1"] .st{color:var(--on)}
+.shard[data-on="1"] .st::after{content:"Cristalizado"}
+.shard::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.65) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.shard[data-on="1"][data-just="1"]{animation:sxcrys .8s cubic-bezier(.2,.9,.3,1.2)}
+.shard[data-on="1"][data-just="1"]::after{animation:sxsweep .9s ease-out}
+@keyframes sxcrys{0%{transform:scale(.94) rotate(-2.5deg)}60%{transform:scale(1.03) rotate(.6deg)}100%{transform:none}}
+@keyframes sxsweep{to{transform:translateX(120%)}}
+.sx-facets{display:flex;gap:3px;margin:16px 0 8px}
+.sx-facets i{flex:1;height:14px;background:var(--line);transform:skewX(-28deg);transition:background .4s}
+.sx-facets i.on{background:var(--crim)}
+.sx-facets i.on:nth-child(odd){background:var(--tau)}
+.sx-left{font-size:14px;color:var(--muted);margin:0}
+.sx-left b{color:var(--text);font-weight:600}
+.sx-lines{margin:0;padding:0;list-style:none;font-size:14.5px}
+.sx-lines li{display:grid;grid-template-columns:minmax(110px,auto) 1fr auto;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line)}
+.sx-lines .n{font:700 13px Syncopate,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.sx-lines .t{color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.sx-lines .t::after{content:" ················································";color:var(--line)}
+.sx-lines .r{color:var(--crim);letter-spacing:.2em;font-weight:600}
+.sx-lines .r span{color:var(--line)}
+.sx-lines .w{grid-column:1/-1;font-size:13.5px;color:var(--muted);margin-top:-4px}
+@container rc (max-width:640px){
+  .sx-hero{min-height:0;padding:22px 18px 24px}
+  .sx-hero .k1{width:70%;opacity:.55}
+  .sx-hero h1{font-size:34px}
+  .sx-cd div b{font-size:26px}
+  .sx-stats{grid-template-columns:1fr}
+  .sx-mosaic{grid-template-columns:1fr 1fr}
+  .shard{min-height:150px;padding:18px 14px 16px}
+  .shard .cs{font-size:24px}
+  .frag{padding:20px 18px}
+  .sx-lines li{grid-template-columns:1fr auto}
+  .sx-lines .t{grid-column:1/-1;grid-row:2;white-space:normal}
+  .sx-lines .t::after{content:none}
+}
+</style>
+</head>
+<body>
+<script src="../../assets/js/data.js"></script>
+<script src="prancha.js"></script>
+<script>
+(function () {
+  const GLYPHS = '◇◆△▽⟁⧫⬡⬢⌬⏃⏚⍜';
+  function decode(el) {
+    const final = el.dataset.text; let f = 0;
+    clearInterval(el._t);
+    el._t = setInterval(() => {
+      f++;
+      el.textContent = [...final].map((c, i) => (i < f / 2 || c === ' ') ? c : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]).join('');
+      if (f / 2 >= final.length) { clearInterval(el._t); el.textContent = final; }
+    }, 45);
+  }
+  const KIND = { crim: 'Archon Shard', azure: 'Archon Shard', amber: 'Archon Shard', core: 'Núcleo' };
+  const FACET = 125;
+
+  PR.init({
+    n: 2,
+    nome: 'Transmissão da Praghasa',
+    fonte: 'artefato do mundo',
+    frase: 'O guia é uma <b>transmissão decifrada da Praghasa</b>, a nave-mãe Sentient: ela fala com você em fragmentos antes de partir para Tau, e cada compra é um cristal que se forma.',
+    paletas: {
+      dark: { nome: 'Casco Sentient', sub: 'Escuro · o interior da nave-mãe', cores: [['Casco', '#0e0a0b'], ['Lasca', '#211615'], ['Veio', '#3d2724'], ['Texto', '#f0e5dc'], ['Carmim', '#e0484f'], ['Brilho de Tau', '#ffb37a'], ['Osso', '#dcc6a6']] },
+      light: { nome: 'Osso polido', sub: 'Claro · a carapaça vista à luz', cores: [['Osso', '#f2ece4'], ['Lasca', '#fbf7f1'], ['Veio', '#d8c6b3'], ['Texto', '#23181a'], ['Carmim', '#a3262f'], ['Brasa', '#b4481c'], ['Bronze', '#7a5f3a']] },
+    },
+    fontes: [
+      { nome: 'Syncopate', uso: 'títulos, números, rótulos espaçados', css: 'Syncopate', amostra: 'TAUBOUND 375' },
+      { nome: 'Sora', uso: 'a voz da Praghasa e o texto', css: 'Sora', amostra: 'Colham a carne da lua.' },
+    ],
+    assinatura: 'Os títulos chegam <b>embaralhados em glifos</b> e se decifram, como um sinal sendo captado. Marcar um item faz a lasca <b>cristalizar</b>: ela gira para o lugar, acende em carmim-e-âmbar e um reflexo atravessa a superfície. O progresso são <b>13 facetas</b> (125 Moonflesh cada) que se acendem.',
+    experimente: 'marque a Azure e o Legendary Core; recarregue para ver o título decifrar.',
+    pecas: [
+      ['Topo', 'Cabeçalho de transmissão “Praghasa → Tenno”, lascas Sentient ao fundo, partida para Tau em contagem.'],
+      ['Seções', 'Fragmentos numerados (FRAG 01…12) em vez de capítulos; o menu é a lista de fragmentos.'],
+      ['Loja / checklist', 'Mosaico de lascas com recortes irregulares; marcada = cristalizada.'],
+      ['Progresso', 'Barra de facetas inclinadas, uma por 125 Moonflesh.'],
+      ['Missões', 'Linhas de transmissão com pontilhado até a força do sinal (◆◆◆◆◆).'],
+      ['Armadilhas', 'Fragmentos “corrompidos”: texto com glitch e borda carmim.'],
+      ['Calculadora', '“Previsão de colheita”: a Praghasa calcula quantos ciclos faltam.'],
+    ],
+    render(root) {
+      const ms = ['Zabala', 'Locus Alerts', 'Xini', 'Oestrus'].map(PR.mission);
+      root.innerHTML = `
+      <div class="sx-hero"><span class="k1"></span><span class="k2"></span><span class="k3"></span>
+        <div class="sig"><b>Transmissão</b> · Praghasa → Tenno · FRAG 01 / 04</div>
+        <h1 data-text="Taubound">Taubound</h1>
+        <p class="sx-voice">Colham a <em>carne da lua</em> dos Infestados de Eris. Antes de partir para Tau, eu troco o que tenho pelo que vocês trouxerem. Não haverá segunda passagem.</p>
+        <div class="sx-cd"><span class="sig">Partida para Tau em</span>
+          <div><b data-c="d">--</b><small>dias</small></div><div><b data-c="h">--</b><small>horas</small></div><div><b data-c="m">--</b><small>min</small></div><div><b data-c="s">--</b><small>seg</small></div></div>
+      </div>
+      <section class="frag"><span class="sig"><b>FRAG 02</b> · Dados da colheita</span>
+        <div class="sx-stats">
+          <div class="sx-stat"><b>2 / 3</b><span>por drop, Normal / Steel Path</span></div>
+          <div class="sx-stat"><b>50 / 75</b><span>por Alert concluído</span></div>
+          <div class="sx-stat"><b>1.625</b><span>meta mínima: 3 Shards + Core</span></div>
+        </div></section>
+      <section class="frag"><span class="sig"><b>FRAG 03</b> · O que a Praghasa oferece · prioridade 1</span>
+        <div class="sx-mosaic">${PR.p1().map(i => `<button class="shard" type="button" data-item="${i.id}">
+          <span class="ty">${KIND[i.id]}</span><span class="nm">${i.name.replace('Tauforged ', 'Tauforged<br>')}</span>
+          <span><span class="cs">${i.cost}<small>MF</small></span><br><span class="st"></span></span></button>`).join('')}</div>
+        <div class="sx-facets">${Array.from({ length: PR.goal() / FACET }, () => '<i></i>').join('')}</div>
+        <p class="sx-left"></p></section>
+      <section class="frag"><span class="sig"><b>FRAG 04</b> · Onde colher</span>
+        <ul class="sx-lines">${ms.map(m => `<li><span class="n">${m.node}</span><span class="t">${m.type}</span>
+          <span class="r" aria-label="${m.rating} de 5">${'◆'.repeat(m.rating)}<span>${'◆'.repeat(5 - m.rating)}</span></span>
+          <span class="w">${m.when}</span></li>`).join('')}</ul></section>`;
+      decode(root.querySelector('h1'));
+    },
+    update(root, just) {
+      const on = Math.round(PR.got() / FACET);
+      root.querySelectorAll('.sx-facets i').forEach((f, i) => f.classList.toggle('on', i < on));
+      root.querySelector('.sx-left').innerHTML = PR.left() ? `<b>${on} de ${PR.goal() / FACET}</b> facetas · faltam <b>${PR.fmt(PR.left())}</b> Moonflesh` : '<b>Todas as facetas acesas.</b> A prioridade 1 está completa.';
+    },
+    tick(root, c) {
+      ['d', 'h', 'm', 's'].forEach(k => root.querySelector(`[data-c=${k}]`).textContent = k === 'd' ? c.d : PR.pad(c[k]));
+    },
+  });
+})();
+</script>
+</body>
+</html>
