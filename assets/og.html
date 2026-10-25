@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capa de compartilhamento</title>
+<!-- Capa do WhatsApp/Discord (1200×630). Gere a imagem com: py -3 tools/gerar_og.py -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Figtree:wght@500;700&family=Italiana&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0a0f;--panel:#15121a;--text:#f1e8ee;--muted:#b3a2b0;--flesh:#ff6f9a;--void:#5fe0d0;--crim:#e0484f;--tau:#ffb37a;--gold:#dcb75c;--gold2:#f6dc93}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{position:relative;background:radial-gradient(620px 420px at 78% 40%,rgba(224,72,79,.42),transparent 70%),radial-gradient(520px 360px at 8% 0%,rgba(95,224,208,.22),transparent 70%),var(--bg);color:var(--text);font-family:Figtree,sans-serif}
+.k1{position:absolute;right:-60px;top:-80px;width:560px;height:820px;background:linear-gradient(160deg,var(--crim),#5a1c22 70%);clip-path:polygon(38% 0,100% 0,100% 100%,0 72%);opacity:.55}
+.k2{position:absolute;right:330px;top:40px;width:200px;height:300px;background:linear-gradient(200deg,var(--tau),transparent);clip-path:polygon(50% 0,100% 40%,60% 100%,0 55%);opacity:.35}
+.sp{position:absolute;border-radius:50%}
+.txt{position:absolute;left:72px;top:96px;width:640px}
+.sig{font:700 17px Figtree,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.sig b{color:var(--flesh)}
+h1{font:700 104px/.95 Fraunces,serif;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;margin:22px 0 22px;letter-spacing:-.01em}
+h1 em{display:block;font-style:italic;font-weight:500;color:var(--flesh)}
+p{margin:0;font:500 27px/1.4 Figtree,sans-serif;color:var(--muted);max-width:600px}
+p b{color:var(--text)}
+.tags{display:flex;gap:10px;margin-top:30px}
+.tags span{padding:10px 18px 9px;font:700 18px Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(var(--crim),var(--crim)) top/100% 3px no-repeat,var(--panel)}
+.tags span:nth-child(1){clip-path:polygon(0 6%,100% 0,96% 100%,4% 94%)}
+.tags span:nth-child(2){clip-path:polygon(4% 0,100% 8%,100% 92%,0 100%)}
+.arch{position:absolute;right:90px;top:62px;width:330px;height:470px;border-radius:999px 999px 8px 8px;padding:9px;background:linear-gradient(180deg,var(--gold2),var(--gold) 60%,#3d3424)}
+.arch img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:999px 999px 3px 3px}
+.cap{position:absolute;right:90px;top:548px;width:330px;text-align:center;font:400 30px Italiana,serif;letter-spacing:.14em;color:var(--gold)}
+</style>
+</head>
+<body>
+<span class="k1"></span><span class="k2"></span>
+<div class="txt">
+  <div class="sig"><b>Interceptado</b> · Praghasa → Tenno · Eris</div>
+  <h1>Operação <em>Taubound</em></h1>
+  <p>Guia do Tenno: <b>Moonflesh</b>, mapa de Eris, loja da Praghasa com checklist e calculadora.</p>
+  <div class="tags"><span>Evento único</span><span>Até 17/11</span></div>
+</div>
+<div class="arch"><img src="../img/xaku1.jpg" alt=""></div>
+<div class="cap">XAKU PRIME</div>
+<script>
+  // Esporos fixos (sem sorteio, para a imagem sair sempre igual)
+  const SP = [[80, 40, 5, 'flesh'], [180, 560, 4, 'void'], [520, 70, 3, 'void'], [640, 590, 6, 'flesh'], [760, 120, 4, 'flesh'], [700, 330, 3, 'void'],
+    [1120, 40, 5, 'void'], [1150, 590, 4, 'flesh'], [40, 330, 3, 'flesh'], [590, 470, 4, 'void'], [450, 30, 4, 'flesh'], [740, 520, 3, 'void']];
+  SP.forEach(([x, y, r, c]) => {
+    const s = document.createElement('span');
+    s.className = 'sp';
+    const v = getComputedStyle(document.documentElement).getPropertyValue('--' + c).trim();
+    s.style.cssText = `left:${x - r * 3}px;top:${y - r * 3}px;width:${r * 6}px;height:${r * 6}px;background:radial-gradient(circle,${v},${v}aa 35%,${v}00 70%)`;
+    document.body.appendChild(s);
+  });
+</script>
+</body>
+</html>

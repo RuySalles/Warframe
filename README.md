@@ -20,6 +20,9 @@ assets/
   js/planner.js           loja em lascas, seletor de arcanos (e o selo do Xaku), calculadora
   js/effects.js           menu ativo, títulos que se decifram, animações, galeria, esporos do topo
 img/                      fotos do loadout (Xaku Prime)
+assets/og.html            capa de compartilhamento (WhatsApp/Discord), 1200×630
+og-image-N.jpg            a capa gerada (o número muda a cada geração)
+tools/gerar_og.py         gera a capa e atualiza o og:image do index.html
 docs/
   direcao-de-arte.md      conceito, peças, temas e momento de assinatura
   pranchas/               pranchas de conceito 0–6 (abra docs/pranchas/index.html)
@@ -29,6 +32,10 @@ backups/                  cópias antes de mudanças grandes (fora do git)
 Os scripts são carregados nessa ordem no fim do `index.html` e conversam por `window.TB` (funções da base) e `window.TB_DATA` (conteúdo). O `?v=2` nos links força o navegador a baixar a versão nova: aumente o número quando mudar o arquivo.
 
 Para mudar preço ou texto de um item, edite só o `assets/js/data.js`.
+
+## Prévia no WhatsApp
+
+Depois de mudar `assets/og.html`, rode `py -3 tools/gerar_og.py` (precisa do Chrome ou do Edge). Ele gera `og-image-N.jpg` com um número novo, porque o WhatsApp guarda a imagem antiga pelo nome, e troca o endereço no `index.html`.
 
 ## Progresso salvo
 
