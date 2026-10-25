@@ -58,6 +58,8 @@ window.TB_DATA = {
         { id: 'gl3', name: 'Neolyst Natah Glyph', cost: 100 },
         { id: 'sig', name: 'Taubound Sigil', cost: 100 },
         { id: 'emb', name: 'Epoch Operation Vessel Emblem', cost: 100 },
+        // Está na lista oficial de recompensas, mas sem preço publicado. cost: null = "?" e fica fora dos totais.
+        { id: 'mortem', name: 'Eris Mortem', cost: null, note: 'Preço a confirmar no jogo · fora dos totais' },
       ],
     },
     {

@@ -14,7 +14,8 @@
   const shopEl = $('shop');
   const TIER_TAG = { 1: 't-sent', 2: 't-gold', 3: 't-void', 4: 't-mut' };
   const FACETS = 20; // lascas da barra de progresso
-  const sum = (items) => items.reduce((total, item) => total + item.cost, 0);
+  // cost: null = preço ainda não confirmado; entra como 0 nas somas
+  const sum = (items) => items.reduce((total, item) => total + (item.cost || 0), 0);
 
   // Cada item é uma lasca: marcada = cristalizada (o texto do estado vem do CSS)
   function itemHtml(item) {
@@ -22,7 +23,7 @@
     return `
       <div class="item ${owned[item.id] ? 'on' : ''}" data-id="${item.id}" role="checkbox" tabindex="0" aria-checked="${!!owned[item.id]}">
         <div class="nm">${escapeHtml(item.name)}${note}</div>
-        <div class="foot"><span class="cost">${item.cost}<small>MF</small></span><span class="st"></span></div>
+        <div class="foot"><span class="cost">${item.cost == null ? '?' : item.cost}<small>MF</small></span><span class="st"></span></div>
       </div>`;
   }
 
